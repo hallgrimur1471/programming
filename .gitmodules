@@ -1,0 +1,4 @@
+[submodule "the-c-programming-language-by-brian-and-ritchie"]
+	path = the-c-programming-language-by-brian-and-ritchie
+	url = https://github.com/hallgrimur1471/c
+	branch = master

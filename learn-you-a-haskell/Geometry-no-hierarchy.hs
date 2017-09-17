@@ -1,4 +1,4 @@
-module Geometry
+module Geometry_no_hierarchy
 ( sphereVolume
 , sphereArea
 , cubeVolume

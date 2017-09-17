@@ -2,3 +2,10 @@
 *
 !/**/
 !*.*
+
+# ignore files with certain extensions
+**.o
+**.hi
+**.swp
+
+**/project.progress

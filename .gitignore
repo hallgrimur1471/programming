@@ -3,5 +3,10 @@
 !/**/
 !*.*
 
-# ignore build directories
+# ignore files with certain extensions
+**.o
+**.hi
+**.swp
+
 google-test/build/*
+**/project.progress

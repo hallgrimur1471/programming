@@ -8,5 +8,6 @@
 **.hi
 **.swp
 
+google-test/build/*
 **/project.progress
 scheme-interpreter-written-in-haskell/wyasi48h.pdf

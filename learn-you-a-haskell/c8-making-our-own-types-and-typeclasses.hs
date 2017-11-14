@@ -61,4 +61,11 @@ lockerLookup lockerNumber map =
                                 then Right code
                                 else Left $ "Locker " ++ show lockerNumber ++ " is already taken!"
 
+infixr 5 :-:
+data List a = Empty | a :-: (List a) deriving (Show, Read, Eq, Ord)
+
+infixr 5.++
+(.++) :: List a -> List a -> List a
+Empty .++ a = a
+(x :-: xs) .++ ys = x :-: (xs .++ ys)
 

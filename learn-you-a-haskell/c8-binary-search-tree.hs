@@ -9,3 +9,10 @@ treeInsert x (Node a left right)
       | x == a = Node x left right
       | x < a  = Node a (treeInsert x left) right
       | x > a  = Node a left (treeInsert x right)
+
+treeElem :: (Ord a) => a -> Tree a -> Bool
+treeElem x EmptyTree = False
+treeElem x (Node z left right)
+             | x == z = True
+             | x < z  = treeElem x left
+             | x > z  = treeElem x right

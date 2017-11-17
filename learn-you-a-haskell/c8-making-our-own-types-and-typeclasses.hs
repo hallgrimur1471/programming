@@ -64,7 +64,7 @@ lockerLookup lockerNumber map =
 infixr 5 :-:
 data List a = Empty | a :-: (List a) deriving (Show, Read, Eq, Ord)
 
-infixr 5.++
+infixr 5 .++
 (.++) :: List a -> List a -> List a
 Empty .++ a = a
 (x :-: xs) .++ ys = x :-: (xs .++ ys)

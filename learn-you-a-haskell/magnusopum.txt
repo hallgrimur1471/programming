@@ -1,0 +1,3 @@
+Alchemy magnus
+opum magnus
+learn you a Haskell

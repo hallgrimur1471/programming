@@ -35,16 +35,19 @@ data LispVal = Atom String
              | String String
              | Bool Bool deriving(Show)
 
-ourFilter = do x <- many (noneOf "\"\\")
+--ourFilter = do x <- many (noneOf "\"\\")
 
-charOrEscapedQuote cs = satisfy charOrEscapedQuote
+--charOrEscapedQuote cs = satisfy charOrEscapedQuote
 
+-- str='"as\df"'; ghc --make ex02-2.hs && ./ex02-2 $str
 parseString :: Parser LispVal
 parseString = do char '"'
-                 x <- ourFilter
-                 x <- many (noneOf "\"")
+                 x <- many (noneOf "\"\\")
+                 char '\\'
+                 char 'd'
+                 char 'f'
                  char '"'
-                 return $ String x
+                 return $ String (x)
 
 parseAtom :: Parser LispVal
 parseAtom = do first <- letter <|> symbol

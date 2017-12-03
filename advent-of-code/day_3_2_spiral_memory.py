@@ -17,7 +17,7 @@ class Lens:
         self._mid = math.floor(width/2)
 
     def add(self, num):
-        self._array[self._mid][self._mid] = num + self._neighbours(self._array)
+        self._array[self._mid][self._mid] = num + self._neighbours()
 
     def move(self, direction):
         if direction == "left":
@@ -48,11 +48,12 @@ class Lens:
     def _delete_row_at(self, column):
         self._array = np.delete(self._array, column, axis=0)
 
-    def _neighbours(self, a):
-        mid = self._mid
-        return (sum(a[mid-1][mid-1:mid+2])
-               +sum(a[mid+1][mid-1:mid+2])
-               +sum(a[mid][[mid-1, mid+1]]))
+    def _neighbours(self):
+        a = self._array
+        m = self._mid
+        return (sum(a[m-1][m-1:m+2])
+               +sum(a[m+1][m-1:m+2])
+               +sum(a[m][[m-1, m+1]]))
 
 def error(msg):
      sys.stderr.write(msg) 

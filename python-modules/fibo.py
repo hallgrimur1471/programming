@@ -1,6 +1,10 @@
+#!/usr/bin/env python3
+
 # Fibonacci numbers module
 
-# wrtie Fibonacci series up to n
+BOLTZMANN_CONSTANT = 8.6173303 * 10**-5
+
+# write Fibonacci series up to n
 def fib(n):
     a, b = 0, 1
     while b < n:

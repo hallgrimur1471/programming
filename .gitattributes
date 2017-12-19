@@ -1,1 +1,2 @@
-*.input binary
+advent-of-code/*.input binary
+advent-of-code/*.example binary

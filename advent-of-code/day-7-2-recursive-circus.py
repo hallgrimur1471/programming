@@ -12,11 +12,8 @@ class Tree:
         self.children.append(tree)
 
     def weight(self):
-        if self.children is None:
-            return self.root_weight
-        else:
-            children_weight = sum([child.weight() for child in self.children])
-            return self.root_weight + children_weight
+        children_weight = sum([child.weight() for child in self.children])
+        return self.root_weight + children_weight
 
 def main():
     # fill weight and child map
@@ -33,7 +30,7 @@ def main():
 
     root = get_global_root(child_map)
     tree = tree_from_(root, child_map, weight_map)
-    find_unbalance(tree)
+    find_unbalance(tree, None, None)
 
 def tree_from_(node, child_map, weight_map):
     tree = Tree(node, weight_map[node])
@@ -41,16 +38,24 @@ def tree_from_(node, child_map, weight_map):
         tree.add_child(tree_from_(child, child_map, weight_map))
     return tree
 
-def find_unbalance(tree):
+def find_unbalance(tree, last_uneven_weight, last_offset):
     weights = [subtower.weight() for subtower in tree.children]
-    if all([weight == weights[0] for weight in weights]):
-        for subtower in tree.children:
-            find_unbalance(subtower)
-    else:
-        print([child.root for child in tree.children])
-        print([child.root_weight for child in tree.children])
-        print(weights)
-        # answer was 7331-(75514-75509) = 7326
+    print("subtower weights:", weights)
+
+    # we are done if all weights equal
+    if weights==[] or all([weight == weights[0] for weight in weights]):
+        print("The uneven program should weigh", last_uneven_weight+last_offset)
+        return
+
+    # find the uneven child
+    i = 0
+    for i in range(0, len(weights)):
+        if weights[i] not in (weights[:i] + weights[i+1:]):
+            break
+    uneven_child = tree.children[i]
+    offset = (weights[:i]+weights[i+1:])[0] - uneven_child.weight()
+
+    find_unbalance(uneven_child, uneven_child.root_weight, offset)
         
 def get_global_root(child_map):
     nodes = set()

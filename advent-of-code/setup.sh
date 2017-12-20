@@ -5,7 +5,7 @@ name="$2"
 
 cat setup-template.py > day-${day_num}-1-${name}.py
 cat setup-template.py > day-${day_num}-2-${name}.py
-touch day-${day_num}-${name}.input
+./get-input.py ${day_num} $AOC_COOKIE > day-${day_num}-${name}.input
 touch day-${day_num}-${name}.example
 
 sudo chmod +x day-${day_num}-1-${name}.py

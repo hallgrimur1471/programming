@@ -1,0 +1,103 @@
+#!/usr/bin/env python3
+
+import sys
+import time
+
+class Layer:
+    def __init__(self, rnge):
+        self.range = rnge
+        self.reset()
+
+    def step(self):
+        if self.laser_pos == self.range-1 and self.dir == "down":
+            self.dir = "up"
+        elif self.laser_pos == 0 and self.dir == "up":
+            self.dir = "down"
+
+        if self.dir == "down":
+            self.laser_pos += 1
+        elif self.dir == "up":
+            self.laser_pos -= 1
+        else:
+            error("step")
+
+    def reset(self):
+        self.laser_pos = 0
+        self.dir = "down"
+
+def main():
+    start_time = time.time()
+
+    firewall = dict()
+    for line in sys.stdin:
+        line = list(map(int, line.strip().split(": ")))
+        p = line[0]
+        r = line[1]
+
+        firewall[p] = Layer(r)
+
+    delay_candidate = 0
+    while caught_using_delay(delay_candidate, firewall, start_time):
+        delay_candidate += 1
+
+    print("did not get caught using delay: "+str(delay_candidate))
+    print("runtime: "+seconds_to_hms(time.time()-start_time))
+
+mx = 0
+def caught_using_delay(delay, firewall, start_time):
+    global mx
+
+    # reset firewall
+    for field, layer in firewall.items():
+        layer.reset()
+
+    # check if reset
+    for field, layer in firewall.items():
+        if layer.laser_pos != 0:
+            error("firewall not clean: "+str(layer.laser_pos))
+
+    # ocationally print progress
+    if delay % 100 == 0:
+        print("delay: " + str(delay)
+                + ", time elapsed: "
+                + seconds_to_hms(time.time()-start_time))
+
+    goal = max(firewall.keys())
+    packet_pos = -1
+
+    # delay packet transmission
+    for _ in range(0, delay):
+        update_layers(firewall)
+
+    while packet_pos < goal:
+        # update packet
+        packet_pos += 1
+        if packet_pos in firewall: # there is layer here
+            layer = firewall[packet_pos]
+            if layer.laser_pos == 0:
+                if packet_pos >= mx:
+                    mx = packet_pos
+                    print("got to: "+str(packet_pos)+"!    "+''.join(100*"*"))
+                return True # caught
+    
+        # update layers
+        update_layers(firewall)
+
+    return False
+
+def update_layers(firewall):
+    for pos in firewall:
+        layer = firewall[pos]
+        layer.step()
+
+def seconds_to_hms(seconds):
+    m, s = divmod(seconds, 60)
+    h, m = divmod(m, 60)
+    return "%d:%02d:%02d" % (h, m, s)
+
+def error(msg):
+    sys.stdout.write("Error: "+msg+"\n")
+    sys.exit(1)
+
+if __name__ == "__main__":
+    main()

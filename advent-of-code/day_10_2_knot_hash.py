@@ -41,8 +41,7 @@ def knot_hash(inpt):
             k = k ^ sparse_hash[16*i + j]
         dense_hash.append(k)
 
-    dense_hash = ''.join(list(map(lambda num: "{0:0{1}x}".format(num, 2),
-            dense_hash)))
+    dense_hash = ''.join(list(map(lambda num: "{0:0{1}x}".format(num, 2), dense_hash)))
     return dense_hash
 
 if __name__ == "__main__":

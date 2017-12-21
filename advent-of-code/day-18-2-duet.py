@@ -152,14 +152,9 @@ def main():
     finished = False
     while not (deadlock or finished):
         while not (A.is_waiting_for_data() or A.is_terminated):
-            #print(A._instruction_register.print())#, end=' | ')
             A.step()
-            #print_debug_info("A.step()", A, B)
         while not (B.is_waiting_for_data() or B.is_terminated):
-            #print(B._instruction_register.print())#, end=' | ')
             B.step()
-            #print("B:"+str(B.registers))
-            #print_debug_info("B.step()", A, B)
         if A.is_waiting_for_data() and B.is_waiting_for_data():
             print("deadlock")
             deadlock = True

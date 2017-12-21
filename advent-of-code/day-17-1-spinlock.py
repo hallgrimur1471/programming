@@ -7,6 +7,17 @@ from copy import copy, deepcopy
 def main():
     start_time = time.time()
 
+    steps = int(sys.stdin.read().strip())
+    vortex = [0]
+    i = 0
+
+    for val in range(1, 2018):
+        i = (i + (steps % len(vortex))) % len(vortex)
+        vortex.insert(i+1, val)
+        i = (i+1) % len(vortex)
+
+    print(vortex[(vortex.index(2017)+1) % len(vortex)])
+
     end_time = time.time()
     print("runtime: "+seconds_to_hms(end_time-start_time))
 

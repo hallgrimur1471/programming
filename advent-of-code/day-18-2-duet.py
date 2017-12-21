@@ -133,16 +133,16 @@ def main():
     B.set_register('p', 1)
     A.pipe_output_to(B)
     B.pipe_output_to(A)
-    deadlock = False
-    while not deadlock:
+    while not deadlock(A, B):
         while not (A.is_waiting_for_data() or A.is_terminated):
             A.step()
         while not (B.is_waiting_for_data() or B.is_terminated):
             B.step()
-        if ((A.is_waiting_for_data() or A.is_terminated) and
-            (B.is_waiting_for_data() or B.is_terminated)):
-            deadlock = True
     print("Program B sent "+str(B.num_sent_packets)+" packets.")
+
+def deadlock(A, B):
+    return ((A.is_waiting_for_data() or A.is_terminated) and
+            (B.is_waiting_for_data() or B.is_terminated))
 
 def print_debug_info(msg, A, B):
     print(msg+" | A:"+str(A.registers), "str(A._pipe_in)"

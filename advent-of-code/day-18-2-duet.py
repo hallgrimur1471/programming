@@ -19,10 +19,10 @@ class Program:
         self._jumped_on_last_instruction = False
 
     def step(self):
+        self._jumped_on_last_instruction = False # reset
         self._execute_current_instruction()
         if not (self._jumped_on_last_instruction or self.is_waiting_for_data()):
             self._move_to_next_instruction()
-        self._jumped_on_last_instruction = False
 
     def pipe_output_to(self, program):
         if not isinstance(program, Program):

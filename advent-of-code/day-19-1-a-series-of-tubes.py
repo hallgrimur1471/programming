@@ -8,21 +8,21 @@ from copy import copy, deepcopy
 def main():
     letters = []
     tmap = Ut.get_np_string_map_from_stdin()
-    c = '|'
     direction = Ut.down
-    position = np.array([0, np.where(tmap[0]==c)[0][0]])
+    position = np.array([-1, np.where(tmap[0]=='|')[0][0]])
     path_is_complete = False
     while not path_is_complete:
+        position += direction
         if Ut.is_out_of_bounds(position, tmap):
             path_is_complete = True
             print("out of bounds")
             break
+        c = tmap[tuple(position)]
         if c == ' ':
             path_is_complete = True
             print("end of road")
             break
-        c = tmap[tuple(position)]
-        if c == '+':
+        elif c == '+':
             found_new_direction = False
             candidates = [Ut.rel_left(direction), Ut.rel_right(direction)]
             for candidate in candidates:
@@ -36,7 +36,8 @@ def main():
                 break
         elif c.isalpha():
             letters.append(c)
-        position += direction
+        else:
+            pass
         print(position, c)
     print(''.join(letters))
 

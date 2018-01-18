@@ -1,7 +1,8 @@
 advent-of-code/*.input binary
 advent-of-code/*.example binary
 
-machine-learining/**/*.csv binary
+machine-learning/**/*.csv binary
+machine-learning/**/*.xls binary
 
 matasano-crypto-challenges/**/*.in binary
 

@@ -5,8 +5,6 @@ import inspect
 import os.path
 from statistics import mean
 
-def most_likely_keysizes_
-
 def repeating_key_xor(plaintext, key):
     """
     Args:
@@ -101,19 +99,19 @@ def fixed_xor(a, b):
         a (bytes[array])
         b (bytes[array])
     Returns:
-        a XOR b
+        a XOR b (bytes[array])
     """
     return bytes([i^j for i,j in zip(a,b)])
 
-def hex_to_base64(hx):
+def hex_to_base64(hex_):
     """
     Args:
-        hx (bytes[array])
+        hex_ (bytes[array])
     Returns:
-        bytes[array]. base64 representation of hx
+        base64_ (bytes[array]). base64 representation of hex
     """
-    base64_bytes = base64.b64encode(hx)
-    return base64_bytes
+    base64_ = base64.b64encode(hex_)
+    return base64_
     
 def hex_string_to_int(hex_string):
     """

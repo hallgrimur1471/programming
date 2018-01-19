@@ -15,8 +15,8 @@ def main():
             "706f69736f6e6f7573206d757368726f6f6d")
     hex_bytes = bytes.fromhex(hex_string)
     base64_bytes = utils.hex_to_base64(hex_bytes)
-    print(base64_string.decode())
-    assert base64_string.decode()==("SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG"
+    print(base64_bytes.decode())
+    assert base64_bytes.decode()==("SSdtIGtpbGxpbmcgeW91ciBicmFpbiBsaWtlIGEgcG"
             "9pc29ub3VzIG11c2hyb29t")
 
 if __name__ == "__main__":

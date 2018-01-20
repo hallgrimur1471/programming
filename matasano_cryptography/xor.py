@@ -1,7 +1,17 @@
 #!/usr/bin/env python3
 
+"""
+XOR cryptography
+"""
+
+import sys
+import os
+from os.path import dirname
+
 class DecryptionResult(object):
-    _CHAR_FREQ = _character_frequencies()
+    """
+    Class to store results of a decryption, calculates it's likeness to english.
+    """
 
     def __init__(self, data, key):
         """
@@ -11,7 +21,8 @@ class DecryptionResult(object):
         """
         self._data = data
         self._key = key
-        self._frequency_distance = None
+        self._freq_dist = None # frequency distance
+        self._english_char_freq = None # english character frequencies
 
     @property
     def data(self):
@@ -23,15 +34,23 @@ class DecryptionResult(object):
 
     @property
     def frequency_distance(self):
-        if self._frequency_distance is None:
-            self._frequency_distance = self._calculate_frequency_distance()
-        return self._frequency_distance
+        if self._freq_dist is None:
+            self._freq_dist = self._calculate_freq_dist()
+        return self._freq_dist
 
-    def _calculate_frequency_distance(self):
+    def _calculate_freq_dist(self):
+        """
+        Returns:
+            freq_dist (float). A score specifying likeness of self.data
+            and typical english sentences. The lower the value of freq_dist
+            the more similar self.data is to english.
+        """
+        if self._english_char_freq is None:
+            self._english_char_freq = self._calculate_english_char_freq()
         # the lower the frequency_distance, the better
         char_scores = []
         data = self._data # copy() not requred since bytes in not mute-able
-        for char, english_frequency in _CHAR_FREQ.iteritems():
+        for char, engish_freq in self._english_char_freq.iteritems():
             # todo: move normalize_caps to a place where it can be modified
             normalize_caps = False
             if normalize_caps:
@@ -39,30 +58,37 @@ class DecryptionResult(object):
                 for i, byte in enumerate(data):
                     if chr(byte).isalpha():
                         data[i] = ord(chr(byte).lower())
-            occurs_num = len(list(filter(lambda byte_int: byte_int==ord(char),
-                    data)))
+            occurs_num = len([byte for byte in data if byte == ord(char)])
             frequency = float(occurs_num)/len(data)
-            char_score = abs(frequency - english_frequency)
+            char_score = abs(frequency - engish_freq)
             char_scores.append(char_score)
         freq_dist = sum(char_scores)
         return freq_dist
 
-    def _character_frequencies():
+    def _calculate_english_char_freq(self):
+        """
+        Returns:
+            char_freq (dict). Dictionary where:
+                key: english character
+                value: percentage specifying how common the character is
+                       in english.
+        """
         # make a lookup table with info about english character frequency
         char_freq = dict()
-        with open(os.path.join(matsano_directory,
-                "character_frequency_in_english.txt")) as f:
+        matasano_directory = dirname(sys.path[0])
+        with open(os.path.join(matasano_directory,
+                               "character_frequency_in_english.txt")) as f:
             for line in f:
                 line = line.split()
                 char = line[0]
                 freq = line[1]
                 char_freq[char] = int(freq)
         total_chars = sum(char_freq.values())
-        for k,v in char_freq.items():
+        for k, v in char_freq.items():
             char_freq[k] = float(v)/total_chars
         return char_freq
 
-def repeating_key_encryption(data, key):
+def repeating_key_encryption(data, key): # pylint: disable=unused-argument
     pass
 
 def encrypt(data, key):
@@ -80,9 +106,9 @@ def encrypt(data, key):
         cipher[i] = byte ^ key[i%3]
     return cipher
 
-def single_byte_decryption(data, num_results=1):
+def single_byte_decryption(data, num_results=1): # WIP ... pylint: disable=unused-argument
     decryption_result = DecryptionResult("data", "key")
     return decryption_result
 
-def repeating_key_decryption(data):
+def repeating_key_decryption(data): # pylint: disable=unused-argument
     pass

@@ -11,7 +11,7 @@ do
     echo "******************************************************"
     $program
     if [ $? -eq 1 ]; then
-        echo "Failure at: ${program}."
+        #echo "Failure at: ${program}."
         echo "Stop."
         exit 1
     else

@@ -8,6 +8,7 @@
 **/*.hi
 **/*.swp
 **/*.pyc
+**/.pylint.out
 
 google-test/build/*
 **/project.progress

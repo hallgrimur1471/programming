@@ -4,11 +4,13 @@
 !*.*
 
 # ignore files with certain extensions
-**.o
-**.hi
+**/*.o
+**/*.hi
 **/*.swp
 **/*.pyc
+**/.pylint.out
 
 google-test/build/*
 **/project.progress
 scheme-interpreter-written-in-haskell/wyasi48h.pdf
+advent-of-code/merged.py

@@ -8,6 +8,17 @@ import math
 from copy import copy, deepcopy
 
 def main():
+    mn = (0.0, math.inf)
+    for i, line in enumerate(sys.stdin):
+        line = line.rstrip('\n').split(', ')[2]
+        line = line.lstrip('a=<')
+        line = line.rstrip('>')
+        line = list(map(int, line.split(',')))
+        print(i, line, math.sqrt(sum([i**2 for i in line])))
+        acceleration_magnitude = math.sqrt(sum([i**2 for i in line]))
+        if acceleration_magnitude < mn[1]:
+            mn = (i, acceleration_magnitude)
+    print(mn[0], mn[1])
 
 # Utilities
 class Ut:
@@ -55,4 +66,4 @@ if __name__ == "__main__":
     start_time = time.time()
     main()
     end_time = time.time()
-    print("runtime: "+Ut.seconds_to_hms(end_time-start_time))
+    print("runtime: " + Ut.seconds_to_hms(end_time-start_time))

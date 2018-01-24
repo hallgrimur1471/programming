@@ -3,11 +3,13 @@
 import sys
 import time
 import numpy as np
-import re
-import math
 from copy import copy, deepcopy
 
 def main():
+    start_time = time.time()
+
+    end_time = time.time()
+    print("runtime: "+seconds_to_hms(end_time-start_time))
 
 # Utilities
 class Ut:
@@ -55,4 +57,4 @@ if __name__ == "__main__":
     start_time = time.time()
     main()
     end_time = time.time()
-    print("runtime: "+Ut.seconds_to_hms(end_time-start_time))
+    print("runtime: "+seconds_to_hms(end_time-start_time))

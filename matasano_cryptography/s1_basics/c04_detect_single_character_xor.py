@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 
+"""
+Finds line in file that has been encrypted using single-character XOR
+"""
+
 import sys
-import math
 from os.path import abspath
 
 # matsano crypto modules
 matsano_crypto_challenges = abspath("../")
 sys.path.insert(1, matsano_crypto_challenges)
+# pylint: disable=wrong-import-position
 import utils as ut
 
 def main():
@@ -27,7 +31,7 @@ def main():
     best_matches.sort(key=lambda m: m[1])
     best_match = best_matches[0]
     print("Best match: freq_dist:{:.8} | char: {} | decrypted: {}".format(
-            best_match[1], chr(best_match[2]), best_match[0]))
+        best_match[1], chr(best_match[2]), best_match[0]))
 
 if __name__ == "__main__":
     main()

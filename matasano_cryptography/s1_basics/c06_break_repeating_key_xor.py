@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+"""
+Break repeating-key XOR test
+"""
+
 import sys
 import base64
 from functools import reduce
@@ -8,6 +12,7 @@ from os.path import dirname, join
 # matsano crypto modules
 root_folder = dirname(sys.path[0])
 sys.path.insert(1, root_folder)
+# pylint: disable=wrong-import-position
 import utils as ut
 
 def main():

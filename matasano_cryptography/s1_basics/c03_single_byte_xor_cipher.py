@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 
+"""
+Single-byte XOR decryption test
+"""
+
 import sys
-import os.path
 from os.path import dirname
-from statistics import mean
 
 # add matasano_cryptography package to path
 crypto_parent_folder = dirname(dirname(sys.path[0]))
 if crypto_parent_folder not in sys.path:
     sys.path.insert(1, crypto_parent_folder)
 
-from matasano_cryptography import utils as ut
+# pylint: disable=wrong-import-position
 from matasano_cryptography import xor
 
 def main():
     cipher = bytes.fromhex("1b37373331363f78151b7f2b783431333d78397828372d363c7"
-            "8373e783a393b3736")
+                           "8373e783a393b3736")
     r = xor.single_byte_decryption(cipher, num_results=3)
     print(r)
     print(r.data)

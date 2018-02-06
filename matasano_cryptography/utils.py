@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 
+"""
+Various utility functions
+"""
+
 import sys
 import os
 import os.path
 from os.path import dirname
-from statistics import mean
+#from statistics import mean
 import base64
-import inspect
+#import inspect
 
 class DecryptionResult(object):
     """
@@ -99,7 +103,7 @@ class DecryptionResult(object):
 #            other in lower-case. normalize_caps=True also makes this function
 #            considerably slower.
 #    Returns:
-#        (results, frequency_distances). results are sorted by english 
+#        (results, frequency_distances). results are sorted by english
 #        resemblance so bytes that most likely resemble english are first.
 #        frequency_distances is a list of floats that corelate to results,
 #        lower frequency_distance means more likely to be english.
@@ -152,7 +156,7 @@ def fixed_xor(a, b):
     Returns:
         a XOR b (bytes[array])
     """
-    return bytes([i^j for i,j in zip(a,b)])
+    return bytes([i^j for i, j in zip(a, b)])
 
 def hex_to_base64(hex_):
     """
@@ -163,7 +167,7 @@ def hex_to_base64(hex_):
     """
     base64_ = base64.b64encode(hex_)
     return base64_
-    
+
 def hex_string_to_int(hex_string):
     """
     Args:

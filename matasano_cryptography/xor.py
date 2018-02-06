@@ -30,7 +30,7 @@ def single_byte_decryption(ciphertext):
         list of bytes[array] with 256 elements. The elements of the list are
         inpt decrypted using every possible byte value.
     """
-    candidates = bytes(range(0,256))
+    candidates = bytes(range(0, 256))
     results = []
     for candidate in candidates:
         result = bytearray()

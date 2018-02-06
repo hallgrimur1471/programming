@@ -14,3 +14,4 @@ google-test/build/*
 **/project.progress
 scheme-interpreter-written-in-haskell/wyasi48h.pdf
 advent-of-code/merged.py
+matasano_crypto_challenges/**/*.egg-info

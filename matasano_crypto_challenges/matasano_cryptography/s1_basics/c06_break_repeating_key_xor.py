@@ -4,19 +4,15 @@
 Break repeating-key XOR test
 """
 
-import sys
 import base64
 from functools import reduce
-from os.path import dirname, join
+from os.path import dirname, join, realpath
 
-# matsano crypto modules
-root_folder = dirname(sys.path[0])
-sys.path.insert(1, root_folder)
-# pylint: disable=wrong-import-position
-import utils as ut
+from matasano_cryptography import utils as ut
 
 def main():
-    with open(join(root_folder, "s1_basics/c06_break_repeating_key_xor.in")) \
+    root_folder = dirname(realpath(__file__))
+    with open(join(root_folder, "c06_break_repeating_key_xor.in")) \
             as f:
         data = list(map(lambda line: line.rstrip(), f.readlines()))
         data = list(map(lambda line: base64.b64decode(line), data))

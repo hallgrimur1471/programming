@@ -54,7 +54,7 @@ class DecryptionResult(object):
         # the lower the frequency_distance, the better
         char_scores = []
         data = self._data # copy() not requred since bytes in not mute-able
-        for char, engish_freq in self._english_char_freq.iteritems():
+        for char, engish_freq in self._english_char_freq.items():
             # todo: move normalize_caps to a place where it can be modified
             normalize_caps = False
             if normalize_caps:

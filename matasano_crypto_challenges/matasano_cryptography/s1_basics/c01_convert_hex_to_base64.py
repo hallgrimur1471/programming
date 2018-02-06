@@ -4,15 +4,6 @@
 Convert hex to base64 test
 """
 
-import sys
-from os.path import dirname
-
-# add matasano_cryptography package to path
-crypto_parent_folder = dirname(dirname(sys.path[0]))
-if crypto_parent_folder not in sys.path:
-    sys.path.insert(1, crypto_parent_folder)
-
-# pylint: disable=wrong-import-position
 from matasano_cryptography import utils
 
 def main():

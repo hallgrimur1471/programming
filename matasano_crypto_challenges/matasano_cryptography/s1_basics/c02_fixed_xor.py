@@ -1,13 +1,10 @@
 #!/usr/bin/env python3
 
-import sys
-from os.path import dirname
-import binascii
+"""
+Fixed XOR test
+"""
 
-# add matasano_cryptography package to path
-crypto_parent_folder = dirname(dirname(sys.path[0]))
-if crypto_parent_folder not in sys.path:
-    sys.path.insert(1, crypto_parent_folder)
+import binascii
 
 from matasano_cryptography import utils
 
@@ -22,7 +19,7 @@ def main():
     data_xor = utils.fixed_xor(data1, data2)
     print(binascii.hexlify(data_xor).decode())
     assert (binascii.hexlify(data_xor).decode()
-            =="746865206b696420646f6e277420706c6179")
+            == "746865206b696420646f6e277420706c6179")
 
 if __name__ == "__main__":
     main()

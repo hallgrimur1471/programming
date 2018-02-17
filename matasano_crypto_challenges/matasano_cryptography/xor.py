@@ -4,6 +4,8 @@
 XOR cryptography
 """
 
+from matasano_cryptography.utils import DecryptionResult
+
 def repeating_key_encryption(data, key): # pylint: disable=unused-argument
     pass
 
@@ -30,7 +32,7 @@ def single_byte_decryption(ciphertext):
         list of bytes[array] with 256 elements. The elements of the list are
         inpt decrypted using every possible byte value.
     """
-    candidates = bytes(range(0,256))
+    candidates = bytes(range(0, 256))
     results = []
     for candidate in candidates:
         result = bytearray()
@@ -39,9 +41,28 @@ def single_byte_decryption(ciphertext):
         results.append(result)
     return results
 
-def single_byte_decryption(data, num_results=1): # WIP ... pylint: disable=unused-argument
-    decryption_result = DecryptionResult("data", "key")
-    return decryption_result
+def single_byte_decryption(cipher, num_results=1): # WIP ... pylint: disable=unused-argument
+    """
+    Args:
+        cipher (bytes[array]): cipher to decrypt
+        num_results (int): number of results to return
+    Returns:
+        list of DecryptionResult, the first element is the most likely data, key
+        combination according to english frequency analysis, the second element
+        the second most likely etc...
+        The list contains num_results elements.
+    """
+    key_candidates = bytes(range(0, 256))
+    results = []
+    for key in key_candidates:
+        data = bytearray()
+        for byte in cipher:
+            data.append(byte ^ key)
+        result = DecryptionResult(data, key)
+        results.append(result)
+    results.sort(key=lambda m: m.frequency_distance)
+    results_to_return = results[:min(num_results, len(results))]
+    return results_to_return
 
 def repeating_key_decryption(data): # pylint: disable=unused-argument
     pass

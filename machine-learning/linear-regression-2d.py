@@ -14,7 +14,7 @@ X = []
 Y = []
 for line in open('data/data_2d.csv'):
     x1, x2, y = line.split(',')
-    X.append([float(x1), float(x2), 1])
+    X.append([1, float(x1), float(x2)])
     Y.append(float(y))
 
 # turn X and Y into numpy arrays

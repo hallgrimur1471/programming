@@ -6,14 +6,14 @@ Implementation test of repeating key XOR
 
 import binascii
 
-from matasano_cryptography import repeating_key_xor
+from matasano_cryptography import xor
 
 def main():
     data = b"Burning 'em, if you ain't quick and nimble\n" \
             + b"I go crazy when I hear a cymbal"
     key = b"ICE"
 
-    cipher = repeating_key_xor.encrypt(data, key)
+    cipher = xor.encrypt(data, key)
     ciphertext = binascii.hexlify(cipher).decode()
     print(ciphertext)
 

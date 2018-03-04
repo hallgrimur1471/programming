@@ -92,64 +92,22 @@ class DecryptionResult(object):
             char_freq[k] = float(v)/total_chars
         return char_freq
 
-#def sort_by_english_character_frequency(results, normalize_caps=False):
-#    """
-#    Args:
-#        results (list of bytes[array])
-#    Kwargs:
-#        normalize_caps (boolean): If True then all upper-case characters are
-#            changed to lower-case characters. Beware that this usually results
-#            in two equally good results, one with the message in CAPS and the
-#            other in lower-case. normalize_caps=True also makes this function
-#            considerably slower.
-#    Returns:
-#        (results, frequency_distances). results are sorted by english
-#        resemblance so bytes that most likely resemble english are first.
-#        frequency_distances is a list of floats that corelate to results,
-#        lower frequency_distance means more likely to be english.
-#    """
-#    matsano_directory = os.path.dirname(os.path.realpath(__file__))
-#
-#    # make a lookup table with info about english character frequency
-#    char_freq = dict()
-#    with open(os.path.join(matsano_directory,
-#            "character_frequency_in_english.txt")) as f:
-#        for line in f:
-#            line = line.split()
-#            char = line[0]
-#            freq = line[1]
-#            char_freq[char] = int(freq)
-#    total_chars = sum(char_freq.values())
-#    for k,v in char_freq.items():
-#        char_freq[k] = float(v)/total_chars
-#
-#    # calculate score for every result, lower scores are better
-#    scores = []
-#    for result in results:
-#        char_scores = []
-#        for char, english_frequency in char_freq.items():
-#            if normalize_caps:
-#                result = bytearray(result)
-#                for i, byte in enumerate(result):
-#                    if chr(byte).isalpha():
-#                        result[i] = ord(chr(byte).lower())
-#            occurs_num = len(list(filter(lambda byte_int: byte_int==ord(char),
-#                    result)))
-#            frequency = float(occurs_num)/len(result)
-#            char_score = abs(frequency - english_frequency)
-#            char_scores.append(char_score)
-#        score = sum(char_scores)
-#        scores.append(score)
-#
-#    results = list(zip(results, scores, range(0, len(results))))
-#    results.sort(key=lambda t: t[1], reverse=False) # sort by score
-#    r = [r for r,s,i in results]
-#    s = [s for r,s,i in results]
-#    i = [i for r,s,i in results]
-#    return r,s,i
+def hamming_distance(a, b):
+    """
+    The hamming distance is just the number of differing bits
+
+    Args:
+        a (bytes[array])
+        b (bytes[array])
+    Returns:
+        hamming distance (int) between a and b
+    """
+    return sum([1 for bit in bytes_to_bin(fixed_xor(a, b)) if bit=='1'])
 
 def fixed_xor(a, b):
     """
+    a XOR b
+
     Args:
         a (bytes[array])
         b (bytes[array])
@@ -179,3 +137,18 @@ def hex_string_to_int(hex_string):
         '0xff -> 255
     """
     return int(hex_string, 16)
+
+def bytes_to_bin(b):
+    """
+    Converts bytes to binary string
+
+    Args:
+        b (bytes[array])
+    Returns:
+        string. binary representation of b
+    Examples:
+        b'\x05' -> '101'
+        b'\xff\x00' -> '1111111100000000'
+    """
+    num = int.from_bytes(b, byteorder='big')
+    return bin(num)[2:]

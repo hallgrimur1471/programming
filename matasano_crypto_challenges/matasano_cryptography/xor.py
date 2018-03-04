@@ -4,13 +4,16 @@
 XOR cryptography
 """
 
-from matasano_cryptography.utils import DecryptionResult
+from math import floor
+from statistics import mean
 
-def repeating_key_encryption(data, key): # pylint: disable=unused-argument
-    pass
+from matasano_cryptography import utils as ut
+from matasano_cryptography.utils import DecryptionResult
 
 def encrypt(data, key):
     """
+    Encrypt using repeating key XOR
+
     Args:
         data (bytes[array])
         key (bytes[array])
@@ -20,28 +23,55 @@ def encrypt(data, key):
         key with each byte of data
     """
     cipher = bytearray(data)
+    keysize = len(key)
     for i, byte in enumerate(cipher):
-        cipher[i] = byte ^ key[i%3]
+        cipher[i] = byte ^ key[i%keysize]
     return cipher
 
-def single_byte_decryption(ciphertext):
+def decrypt(cipher):
     """
-    Args:
-        cipertext (bytes[array])
-    Returns:
-        list of bytes[array] with 256 elements. The elements of the list are
-        inpt decrypted using every possible byte value.
-    """
-    candidates = bytes(range(0, 256))
-    results = []
-    for candidate in candidates:
-        result = bytearray()
-        for byte in ciphertext:
-            result.append(byte ^ candidate)
-        results.append(result)
-    return results
+    Decrypt cipher that has been encrypted using repeating key XOR
 
-def single_byte_decryption(cipher, num_results=1): # WIP ... pylint: disable=unused-argument
+    Args:
+        cipher (bytes[array]): cipher to decrypt
+    Returns:
+        list of DecryptionResult, the first element is the most likely data and
+        key combination, the second element the second most likely etc...
+    """
+    print("determining key ...")
+    # determine probable keysizes
+    keysize_candidates = range(2, min(40, floor(len(cipher)/2)))
+    probable_keysizes = [] # [(keysize, hamming_distance), ...]
+    for keysize in keysize_candidates:
+        hamming_distances = []
+        i = 0
+        while (i+keysize)+keysize <= len(cipher):
+            first = cipher[i:i+keysize]
+            second = cipher[(i+keysize):(i+keysize)+keysize]
+            hamming_distances.append(ut.hamming_distance(first, second))
+            i += 2*keysize
+        hamming_distance = mean(hamming_distances)
+        normalized_hamming_distance = mean(hamming_distances)/keysize
+        probable_keysizes.append((keysize, normalized_hamming_distance))
+    probable_keysizes.sort(key=lambda x: x[1])
+    print("keysize {} most probable".format(probable_keysizes[0][0]))
+
+    # determine key
+    key = bytearray()
+    keysize = probable_keysizes[0][0]
+    for i in range(0, keysize):
+        vertical = cipher[i::keysize]
+        probable_char = single_byte_decryption(vertical)[0].key
+        key.append(probable_char)
+        print(key.decode())
+
+    # determine data
+    cipher = bytes(cipher)
+    key = bytes(key)
+    data = encrypt(cipher, key)
+    return DecryptionResult(data, key)
+
+def single_byte_decryption(cipher, num_results=1):
     """
     Args:
         cipher (bytes[array]): cipher to decrypt
@@ -63,6 +93,3 @@ def single_byte_decryption(cipher, num_results=1): # WIP ... pylint: disable=unu
     results.sort(key=lambda m: m.frequency_distance)
     results_to_return = results[:min(num_results, len(results))]
     return results_to_return
-
-def repeating_key_decryption(data): # pylint: disable=unused-argument
-    pass

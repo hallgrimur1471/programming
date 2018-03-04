@@ -55,7 +55,7 @@ progress6 = 100*float(project6CompletedCourses)/(int(project6TotalCourses))
 progress6 = "%.1f%%" % progress6
 
 project7 = "Fast reading course"
-progress7 = "35.00%%"
+progress7 = "35.0%%"
 
 fx = float(imageWidth)/2
 vs = imageHeight/(n+2)
@@ -71,7 +71,7 @@ color2 = 255
 color3 = 255
 textColor = (color1,color2,color3,255)
 
-projects = [project1, project2, project3, project4, project4, project6, project7]
+projects = [project1, project2, project3, project4, project5, project6, project7]
 progresses = [progress1, progress2, progress3, progress4, progress5, progress6, progress7]
 for i in range(n):
     d.text((fx-12*len(projects[i]),(i+1)*vs), projects[i], font=fnt, fill=textColor)

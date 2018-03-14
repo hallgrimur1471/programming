@@ -11,15 +11,37 @@ replace() {
       | sudo tee "$file" > /dev/null
 }
 
+# first ask a few questions
+echo "Do you want to change hostname? [y/n]"
+read change_hostname
+if [ "$change_hostname" = "y" ]; then
+  echo "Enter new hostname:"
+  read new_hostname
+fi
+
 # stop on errors
 set -e
 
 # display commands
 set -x
 
+# maybe change hostname
+if [ "$change_hostname" = "y" ]; then
+  old_hostname="`hostname`"
+  sudo hostname "$new_hostname"
+  replace /etc/hostname "$old_hostname" "$new_hostname"
+  replace /etc/hosts "$old_hostname" "$new_hostname"
+  echo "Hostname changed, restart is required for changes to get through"
+  echo "Restart now? [y/n]"
+  read restart_now
+  if [ "$restart_now" = "y" ]; then
+    sudo reboot now
+  fi
+fi
+
 # install stuff
 sudo apt-get install -y openssh-client openssh-server
-sudo apt-get install -y vim vim-gtk
+sudo apt-get install -y vim vim-gtk git
 sudo apt-get -y update
 sudo apt-get -y upgrade
 sudo apt-get -y dist-upgrade
@@ -28,15 +50,3 @@ sudo apt-get -y dist-upgrade
 sudo systemctl restart ssh
 sudo systemctl restart sshd
 
-# maybe change hostname
-echo "Do you want to change hostname? [y/n]"
-read user_input
-if [ "$user_input" = "y" ]; then
-  echo "Enter new hostname:"
-  read new_hostname
-  old_hostname="`hostname`"
-  sudo hostname "$new_hostname"
-  replace /etc/hostname "$old_hostname" "$new_hostname"
-  replace /etc/hosts "$old_hostname" "$new_hostname"
-  echo "Hostname changed, restart is required for changes to get through"
-fi

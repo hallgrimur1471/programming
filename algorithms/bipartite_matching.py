@@ -3,7 +3,40 @@
 from math import inf
 from copy import deepcopy
 
+class Node:
+    def __init__(self, name, val=None):
+        self.name = name
+        self.val = val
+        self.childs = []
+        self.parents = []
+
+class Edge:
+    def __init__(self, u, v, val):
+        self.u = u
+        self.v = v
+        self.val = val
+
+class Graph:
+    def __init__(self):
+        self.nodes = []
+        self.edges = []
+
+    def addNode(self, node):
+        self.nodes.append(node)
+
+    def addEdge(self, u, v, val):
+        self.edges.append(Edge(u, v, val))
+
+    def getEdge(self, u, v):
+        for edge in self.edges:
+            pass
+
 def main():
+    graph = Graph()
+    graph.addNode(Node('s'))
+    graph.addNode(Node('t'))
+    graph.addEdge('s', 't', 1)
+
     # adjacency matrix works but will get rediculously big
                      #   s,1,2,3,4,5,6,a,b,c,d,e,f,t
     adjacency_matrix = [[0,1,1,1,1,1,1,0,0,0,0,0,0,0],# s
@@ -60,8 +93,63 @@ def main():
     for y in Y:
         graph_table[y][sink] = 1
 
-    mx = ford_fulkerson(graph_table, source, sink)
+    #mx = ford_fulkerson(graph_table, source, sink)
+    #print("max flow:", mx)
+    source = 0
+    sink = 13
+    mx = ford_fulkerson_adjacency_matrix(adjacency_matrix, source, sink)
     print("max flow:", mx)
+
+def ford_fulkerson_adjacency_matrix(G, source, sink):
+    def find_augmenting_path(u, target, history):
+        candidates = []
+        for v, value in enumerate(G[u]):
+            if G[u][v] - F[u][v] > 0:
+                candidates.append(v)
+        print("candidates", candidates)
+        if candidates == None:
+            return None
+        for v in candidates:
+            if v == target:
+                return history + [(u, v)]
+            if (u,v) not in history:
+                path = find_augmenting_path(v, target, history + [(u, v)])
+                if path == None:
+                    pass # we should try more
+                else:
+                    return path
+        return None # no neighbours gave us a path to target
+    F = []
+    for line in G:
+        F.append([0]*len(G))
+    path = find_augmenting_path(source, sink, [])
+    while path is not None:
+        print("path", path)
+        print("G:")
+        for line in G:
+            print(line)
+        print("F:")
+        for line in F:
+            print(line)
+        # find flow constraint
+        flow = inf
+        for edge in path:
+            u = edge[0]
+            v = edge[1]
+            flow = min(flow, G[u][v] - F[u][v])
+        print("flow", flow)
+        for edge in path:
+            u = edge[0]
+            v = edge[1]
+            F[u][v] += flow
+            F[v][u] -= flow
+        # check if we can still find an augmented path
+        path = find_augmenting_path(source, sink, [])
+    print("F:")
+    for line in F:
+        print(line)
+    maximum_flow = sum([x for x in F[source]])
+    return maximum_flow
 
 def ford_fulkerson(G, source, sink):
     def dfs(u, target, history):

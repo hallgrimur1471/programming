@@ -18,11 +18,11 @@ set -e
 set -x
 
 # install stuff
-sudo apt-get install openssh-client openssh-server
-sudo apt-get install vim vim-gtk
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get dist-upgrade
+sudo apt-get install -y openssh-client openssh-server
+sudo apt-get install -y vim vim-gtk
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y dist-upgrade
 
 # restart openssh
 sudo systemctl restart ssh

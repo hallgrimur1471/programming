@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 from math import inf
+
 def main():
     # adjacency matrix works but will get rediculously big
                      #   s,1,2,3,4,5,6,a,b,c,d,e,f,t

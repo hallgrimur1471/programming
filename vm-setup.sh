@@ -14,9 +14,17 @@ replace() {
 # first ask a few questions
 echo "Do you want to change hostname? [y/n]"
 read change_hostname
-if [ "$change_hostname" = "y" ]; then
+if [[ "$change_hostname" == "y" ]]; then
   echo "Enter new hostname:"
   read new_hostname
+fi
+echo "Do you want to set up git user and email configs? [y/n]"
+read configure_git
+if [[ "$configure_git" == "y" ]]; then
+  echo "Enter git user.name:"
+  read git_username
+  echo "Enter git user.email:"
+  read git_email
 fi
 
 # stop on errors
@@ -26,7 +34,7 @@ set -e
 set -x
 
 # maybe change hostname
-if [ "$change_hostname" = "y" ]; then
+if [[ "$change_hostname" == "y" ]]; then
   old_hostname="`hostname`"
   sudo hostname "$new_hostname"
   replace /etc/hostname "$old_hostname" "$new_hostname"
@@ -50,3 +58,7 @@ sudo apt-get -y dist-upgrade
 sudo systemctl restart ssh
 sudo systemctl restart sshd
 
+# maybe configure git
+if [[ "$configure_git" == "y" ]]; then
+  git config --global user.name "$git_username"
+  git config --global user.email "$git_email"

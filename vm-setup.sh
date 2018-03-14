@@ -62,3 +62,4 @@ sudo systemctl restart sshd
 if [[ "$configure_git" == "y" ]]; then
   git config --global user.name "$git_username"
   git config --global user.email "$git_email"
+fi

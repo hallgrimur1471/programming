@@ -21,13 +21,13 @@ def main():
                         [0,0,0,0,0,0,0,0,0,0,0,0,0,1]]# t 
     source = 0
     sink = 13
-    mx, F = ford_fulkerson_adjacency_matrix(adjacency_matrix, source, sink)
+    mx, F = ford_fulkerson(adjacency_matrix, source, sink)
     print("max flow:", mx)
     print("F:")
     for line in F:
         print(line)
 
-def ford_fulkerson_adjacency_matrix(G, source, sink):
+def ford_fulkerson(G, source, sink):
     def find_augmenting_path(u, target, history):
         candidates = []
         for v, value in enumerate(G[u]):

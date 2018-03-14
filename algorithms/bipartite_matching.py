@@ -50,7 +50,6 @@ def ford_fulkerson(G, source, sink):
         F.append([0]*len(G))
     path = find_augmenting_path(source, sink, [])
     while path is not None:
-        # find flow constraint
         flow = inf
         for edge in path:
             u = edge[0]
@@ -61,7 +60,6 @@ def ford_fulkerson(G, source, sink):
             v = edge[1]
             F[u][v] += flow
             F[v][u] -= flow
-        # check if we can still find an augmented path
         path = find_augmenting_path(source, sink, [])
     maximum_flow = sum([x for x in F[source]])
     return maximum_flow, F

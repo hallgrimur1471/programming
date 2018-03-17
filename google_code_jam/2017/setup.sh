@@ -13,8 +13,10 @@ problem_char="$2"
 this_scripts_directory="` cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd `"
 cd $this_scripts_directory
 
-#challenge_folder = "${this_scripts_directory}/${contest_part}"
-#
+challenge_file="${contest_part}/${problem_char}.py"
+cp ./template.py ./"${challenge_file}"
+sudo chmod +x ./"${challenge_file}"
+
 #challenge_set_num="$1"
 #challenge_num="$2"
 #challenge_name="$3"

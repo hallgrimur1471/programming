@@ -1,0 +1,25 @@
+3
+3 3
+G??
+?C?
+??J
+3 4
+CODE
+????
+?JAM
+2 2
+CA
+KE
+
+Case #1:
+GGJ
+CCJ
+CCJ
+Case #2:
+CODE
+COAE
+JJAM
+Case #3:
+CA
+KE
+

@@ -55,7 +55,7 @@ progress6 = 100*float(project6CompletedCourses)/(int(project6TotalCourses))
 progress6 = "%.1f%%" % progress6
 
 project7 = "Fast reading course"
-progress7 = "35.0%%"
+progress7 = "35.0%"
 
 fx = float(imageWidth)/2
 vs = imageHeight/(n+2)

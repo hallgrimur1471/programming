@@ -152,3 +152,6 @@ def bytes_to_bin(b):
     """
     num = int.from_bytes(b, byteorder='big')
     return bin(num)[2:]
+
+# hex string to bytes:
+#   bytes.fromhex('deadbeef')

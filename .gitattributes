@@ -4,6 +4,7 @@ advent-of-code/day-13-2-packet-scanners-old-run.txt binary
 
 google_code_jam/**/*.out binary
 google_code_jam/**/*.in binary
+google_code_jam/**/*.ex binary
 
 machine-learning/**/*.csv binary
 machine-learning/**/*.xls binary

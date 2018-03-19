@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
-from sys import stdin, stdout, stderr
 import sys
+from sys import stdin, stdout, stderr
+from math import floor, ceil
+
+import numpy as np
+from numpy import zeros
 
 sys.setrecursionlimit(10000)
 

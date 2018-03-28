@@ -2,3 +2,7 @@
 	path = the-c-programming-language-by-brian-and-ritchie
 	url = https://github.com/hallgrimur1471/c
 	branch = master
+[submodule "parsec_in_haskell/parsec"]
+	path = parsec_in_haskell/parsec
+	url = https://github.com/haskell/parsec.git
+	branch = master

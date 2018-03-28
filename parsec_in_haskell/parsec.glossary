@@ -1,0 +1,14 @@
+-- | @parse p filePath input@ runs a parser @p@ over Identity without user
+-- state. The @filePath@ is only used in error messages and may be the
+-- empty string. Returns either a 'ParseError' ('Left')
+-- or a value of type @a@ ('Right').
+--
+-- >  main    = case (parse numbers "" "11, 2, 43") of
+-- >             Left err  -> print err
+-- >             Right xs  -> print (sum xs)
+-- >
+-- >  numbers = commaSep integer
+
+parse :: (Stream s Identity t)
+      => Parsec s () a -> SourceName -> s -> Either ParseError a
+parse p = runP p ()

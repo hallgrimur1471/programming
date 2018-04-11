@@ -12,6 +12,7 @@
 **/.pylint.out
 
 google-test/build/*
+google_code_jam/2017/round1a/contestants
 **/project.progress
 scheme-interpreter-written-in-haskell/wyasi48h.pdf
 advent-of-code/merged.py

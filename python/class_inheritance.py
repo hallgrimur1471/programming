@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 
 class A:
-    def __init__(self):
-        pass
-
     def launch(self):
         #
         # a lot of crazy lines
@@ -15,9 +12,6 @@ class A:
         print("We want the funk")
 
 class B(A):
-    def __init__(self):
-        pass
-
     def launch(self):
         #
         # do some thing new here

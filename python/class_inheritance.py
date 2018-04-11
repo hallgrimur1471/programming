@@ -14,7 +14,7 @@ class A:
 class B(A):
     def launch(self):
         #
-        # do some thing new here
+        # do something new here
         #
 
         #

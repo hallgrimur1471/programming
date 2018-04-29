@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# Install method:
+#
+# sudo apt-get install -y curl
+# curl https://goo.gl/X6Zmmh -o vm-setup.sh
+# sudo chmod +x vm-setup.sh
+# ./vm-setup.sh
+
 # replace string in file
 replace() {
   local file="$1"

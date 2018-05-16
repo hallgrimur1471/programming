@@ -3,7 +3,7 @@
 # Install method:
 #
 # sudo apt-get install -y curl
-# curl https://goo.gl/h8Z7Hu -o vm-setup.sh
+# curl -o vm-setup.sh https://raw.githubusercontent.com/hallgrimur1471/programming/master/vm-setup.sh
 # sudo chmod +x vm-setup.sh
 # ./vm-setup.sh
 

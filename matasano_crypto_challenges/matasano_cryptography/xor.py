@@ -63,7 +63,7 @@ def decrypt(cipher):
         vertical = cipher[i::keysize]
         probable_char = single_byte_decryption(vertical)[0].key
         key.append(probable_char)
-        print(key.decode())
+        print(key)
 
     # determine data
     cipher = bytes(cipher)

@@ -28,10 +28,18 @@ fi
 echo "Do you want to set up git user and email configs? [y/n]"
 read configure_git
 if [[ "$configure_git" == "y" ]]; then
-  echo "Enter git user.name:"
-  read git_username
-  echo "Enter git user.email:"
-  read git_email
+  printf "Set username to hallgrimur1471 and email to "
+  printf "hallgrimur@svarmi.com? [y/n]\n"
+  read use_hallgrimur_config
+  if [[ "$use_hallgrimur_config" == "y" ]]; then
+    git_username="hallgrimur1471"
+    git_email="hallgrimur@svarmi.com"
+  else
+    echo "Enter git user.name:"
+    read git_username
+    echo "Enter git user.email:"
+    read git_email
+  fi
 fi
 
 # stop on errors

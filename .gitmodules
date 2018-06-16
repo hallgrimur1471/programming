@@ -1,5 +1,5 @@
-[submodule "the-c-programming-language-by-brian-and-ritchie"]
-	path = the-c-programming-language-by-brian-and-ritchie
+[submodule "the_c_programming_language_by_brian_and_ritchie"]
+	path = the_c_programming_language_by_brian_and_ritchie
 	url = https://github.com/hallgrimur1471/c
 	branch = master
 [submodule "parsec_in_haskell/parsec"]

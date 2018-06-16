@@ -11,9 +11,9 @@
 **/*.pyc
 **/.pylint.out
 
-google-test/build/*
+google_test/build/*
 google_code_jam/2017/round1a/contestants
 **/project.progress
-scheme-interpreter-written-in-haskell/wyasi48h.pdf
-advent-of-code/merged.py
+scheme_interpreter_written_in_haskell/wyasi48h.pdf
+advent_of_code/merged.py
 matasano_crypto_challenges/**/*.egg-info

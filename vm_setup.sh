@@ -79,3 +79,12 @@ if [[ "$configure_git" == "y" ]]; then
   git config --global user.email "$git_email"
   git config --global push.default simple
 fi
+
+# install docker
+this_scripts_directory=`dirname $0`
+cd $this_scripts_directory
+url="https://raw.githubusercontent.com"
+url+="/hallgrimur1471/programming/master/install_docker_ubuntu_16.sh"
+wget -o install_docker_ubuntu_16.sh "$url"
+sudo chmod +x ./install_docker_ubuntu_16.sh
+./install_docker_ubuntu_16.sh

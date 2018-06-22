@@ -3,9 +3,9 @@
 # Install method:
 #
 # sudo apt-get install -y curl
-# curl -o vm-setup.sh https://raw.githubusercontent.com/hallgrimur1471/programming/master/vm-setup.sh
-# sudo chmod +x vm-setup.sh
-# ./vm-setup.sh
+# curl -o vm_setup.sh https://raw.githubusercontent.com/hallgrimur1471/programming/master/vm_setup.sh
+# sudo chmod +x vm_setup.sh
+# ./vm_setup.sh
 
 # replace string in file
 replace() {

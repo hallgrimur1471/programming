@@ -53,6 +53,7 @@ echo "hi" > A/file2.txt
 ln -s A/file2.txt A/real_symlink2
 
 # let's take a look a the sizes of A and B:
+echo "After modifications:"
 echo "A size: `du -bc A | tail -1 | awk '{print $1}'`"
 echo "B size: `du -bc B | tail -1 | awk '{print $1}'`"
 

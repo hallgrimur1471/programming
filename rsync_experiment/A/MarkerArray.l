@@ -1,0 +1,1 @@
+/home/hallgrimur1471/ros/gestos/devel_cb/.private/aruco_msgs/share/roseus/ros/aruco_msgs/msg/MarkerArray.l

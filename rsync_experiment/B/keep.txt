@@ -1,0 +1,8 @@
+./devel_cb/share/roseus/ros/aruco_msgs/msg/MarkerArray.l
+./devel_cb/share/roseus/ros/rsync_action_server/msg/RsyncGoal.l
+./devel_cb/share/roseus/ros/rsync_action_server/msg/RsyncFeedback.l
+./build_cb/rsync_action_server/CMakeFiles/3.5.1/CMakeDetermineCompilerABI_C.bin
+./build_cb/rsync_action_server/CMakeFiles/3.5.1/CompilerIdCXX/a.out
+./devel_cb/lib/python2.7/dist-packages/rsync_action_server/msg/_RsyncResult.py
+./devel_cb/lib/python2.7/dist-packages/rsync_action_server/msg/_RsyncAction.py
+./devel_cb/lib/python2.7/dist-packages/rsync_action_server/msg/_RsyncFeedback.py

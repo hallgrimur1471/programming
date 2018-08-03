@@ -1,0 +1,1 @@
+/home/hallgrimur1471/ros/gestos/devel_cb/.private/rsync_action_server/share/roseus/ros/rsync_action_server/msg/RsyncFeedback.l

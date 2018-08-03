@@ -1,3 +1,5 @@
+**/*.pyc
+
 advent-of-code/*.input binary
 advent-of-code/*.example binary
 advent-of-code/day-13-2-packet-scanners-old-run.txt binary
@@ -11,4 +13,6 @@ machine-learning/**/*.xls binary
 
 matasano-crypto-challenges/**/*.in binary
 
-**/*.pyc
+rsync_experiment/A/**/* binary
+rsync_experiment/.A.backup/**/* binary
+rsync_experiment/B/**/* binary

@@ -1,5 +1,5 @@
 {-
- - Our string aren't quite R5RS compliant, becuase they don't support escaping
+ - Our strings aren't quite R5RS compliant, becuase they don't support escaping
  - of internal quotes within the string. Change parseString so that \" gives a
  - literal quote character instead of terminating the string. You may want to
  - replace noneOf "\"" with a new parser action that accepts either a
@@ -21,11 +21,12 @@ main = do
 readExpr :: String -> String
 readExpr input = case parse parseExpr "lisp" input of
     Left err -> "No match: " ++ show err
+--  Right val -> "Found value"
     Right val -> "Found value: " ++ show val
 
 parseExpr :: Parser LispVal
-parseExpr = parseString
-        <|> parseAtom
+parseExpr = parseAtom
+        <|> parseString
         <|> parseNumber
 
 data LispVal = Atom String
@@ -42,11 +43,10 @@ data LispVal = Atom String
 -- str='"as\df"'; ghc --make ex02-2.hs && ./ex02-2 $str
 parseString :: Parser LispVal
 parseString = do char '"'
-                 x <- many (noneOf "\"\\")
-                 char '\\'
-                 char 'd'
-                 char 'f'
+                                             #MARK complete this
+                 x <- many (noneOf "\"") <|> char "\\" char "\"" many *noneOf
                  char '"'
+--                 return $ String x
                  return $ String (x)
 
 parseAtom :: Parser LispVal
@@ -56,12 +56,15 @@ parseAtom = do first <- letter <|> symbol
                return $ case atom of
                           "#t" -> Bool True
                           "#f" -> Bool False
+--                          _ -> Atom atom
                           otherwise -> Atom atom
 
 parseNumber :: Parser LispVal
 parseNumber = do
     rs <- many1 digit
     return $ (Number . read) rs
+--parseNumber :: Parser LispVal
+--parseNumber = liftM (Number . read) $ many1 digit
 
 symbol :: Parser Char
 symbol = oneOf "!$%?*+-/:<=?>@^_~#"

@@ -48,5 +48,3 @@ symbol = oneOf "!$%?*+-/:<=?>@^_~#"
 
 spaces :: Parser ()
 spaces = skipMany1 space
-
-

@@ -57,7 +57,7 @@ echo "After modifications:"
 echo "A size: `du -bc A | tail -1 | awk '{print $1}'` bytes"
 echo "B size: `du -bc B | tail -1 | awk '{print $1}'` bytes"
 
-# now let's try to diff
+# rsync all the things!
 printf "\nrsync:"
 rsync -rlptD --delete --info=STATS A/ B
 

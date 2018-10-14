@@ -69,7 +69,7 @@ class MazeFactory {
 class MazeGame {
  public:
   Maze* CreateMaze();
-  Maze* CreateMaze(MazeFactory& factory);
+  Maze* CreateMaze(const MazeFactory& factory);
 };
 
 // Straight forward implementation of CreateMaze:
@@ -99,7 +99,7 @@ Maze* MazeGame::CreateMaze() {
 // We can use the Abstract factory in CreateMaze implementation to avoid
 // hard-coding used classes.
 
-Maze* MazeGame::CreateMaze(MazeFactory& factory) {
+Maze* MazeGame::CreateMaze(const MazeFactory& factory) {
   Maze* aMaze = factory.MakeMaze();
   Room* r1 = factory.MakeRoom(1);
   Room* r2 = factory.MakeRoom(2);
@@ -129,17 +129,17 @@ class Spell {
 
 class EnchantedRoom : public Room {
  public:
-  EnchantedRoom(int n, Spell* spell);
+  EnchantedRoom(int n, Spell* spell) : Room(n) {}
 };
 
 class DoorNeedingSpell : public Door {
  public:
-  DoorNeedingSpell(Room* r1, Room* r2);
+  DoorNeedingSpell(Room* r1, Room* r2) {}
 };
 
 class EnchantedMazeFactory : public MazeFactory {
  public:
-  EnchantedMazeFactory();
+  EnchantedMazeFactory() {}
 
   virtual Room* MakeRoom(int n) const {
     return new EnchantedRoom(n, CastSpell());
@@ -150,7 +150,7 @@ class EnchantedMazeFactory : public MazeFactory {
   }
 
  protected:
-  Spell* CastSpell() const;
+  Spell* CastSpell() const {}
 };
 
 // Example: BombedMazeFactory
@@ -185,7 +185,7 @@ int main() {
 
   MazeGame game2;
   EnchantedMazeFactory factory2;
-  game2.CreateMaze(factory2)
+  game2.CreateMaze(factory2);
 
   std::cout << "Success\n";
   return 0;

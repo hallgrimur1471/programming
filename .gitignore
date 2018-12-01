@@ -11,6 +11,9 @@
 **/*.pyc
 **/.pylint.out
 
+# mypy
+**/.mypy_cache
+
 google_test/build/*
 google_code_jam/2017/round1a/contestants
 **/project.progress

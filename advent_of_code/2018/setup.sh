@@ -9,8 +9,9 @@ cat setup_template.cpp > day_${day_num}_2_${name}.cpp
 touch day_${day_num}_${name}.example
 
 echo "run-when-modified.py . .cpp \
-  \"g++ -std c++17 \
-  -o day_${day_num}_1_${name} \
-  ./day_${day_num}_1_${name}.cpp \
-  && ./day_${day_num}_1_${name} \
+  \"program=day_${day_num}_1_${name} \
+  && g++ -std=c++14 \
+  -o \\\${program} \
+  ./\\\${program}.cpp \
+  && time ./\\\${program} \
   < ./day_${day_num}_${name}.input\""

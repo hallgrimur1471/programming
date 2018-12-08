@@ -10,7 +10,7 @@ touch day_${day_num}_${name}.example
 
 echo "run-when-modified.py . .cpp \
   \"program=day_${day_num}_1_${name} \
-  && g++ -std=c++14 \
+  && g++ -std=c++17 \
   -o \\\${program} \
   ./\\\${program}.cpp \
   && time ./\\\${program} \

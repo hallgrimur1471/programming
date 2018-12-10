@@ -8,6 +8,7 @@
 #include <vector>
 
 #include <boost/date_time/gregorian/gregorian.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
 
 struct DutyInfo {
   std::string guard;
@@ -33,10 +34,30 @@ template <> struct hash<std::pair<std::string, std::string>> {
 int main() {
   std::vector<std::string> records;
   for (std::string line; std::getline(std::cin, line);) {
+    std::regex record_pattern(
+        "\\[([0-9]+)-([0-9]+)-([0-9]+) ([0-9]+):([0-9]+)\\] (.*)");
+    std::smatch match;
+    std::regex_match(line, match, record_pattern);
+    int year = std::stoi(match[1]);
+    int month = std::stoi(match[2]);
+    int day = std::stoi(match[3]);
+    boost::posix_time::hours hour(std::stoi(match[4]));
+    boost::posix_time::minutes minute(std::stoi(match[5]));
+    boost::gregorian::date record_date(year, month, day);
+    boost::posix_time::ptime record_time(record_date, hour + minute);
+    // boost::gregorian::date record_date(std::stoi(match[1]),
+    // std::stoi(match[2]),
+    //                                   std::stoi(match[3]));
+    // boost::posix_time::hours h(5);
+    // boost::posix_time::minutes m(30);
+    // boost::posix_time::ptime time(
+    //    record_date, boost::posix_time::hours(std::stoi(match[4])) +
+    //                     boost::posix_time::minutes(5));
+    std::cout << record_time << std::endl;
     records.push_back(line);
   }
-  boost::gregorian::date start(1518, 2, 28);
-  std::cout << start + boost::gregorian::date_duration(1) << std::endl;
+  // boost::gregorian::date start(1518, 2, 28);
+  // std::cout << start + boost::gregorian::date_duration(1) << std::endl;
 
   // struct {
   //  bool operator()(std::string a, std::string b) const {

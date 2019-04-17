@@ -1,6 +1,8 @@
-#!/usr/bin/env python3.5
+#!/usr/bin/env python3
 import sys
 from collections import deque
+
+DEBUG = "ON"
 
 
 def solve(N):
@@ -8,6 +10,7 @@ def solve(N):
 
 
 def main():
+    sys.setrecursionlimit(10000)
     T = int(input())
     for case_num in range(1, T + 1):
         N = int(input())
@@ -22,6 +25,8 @@ def prnt(*args, **kwargs):
 
 
 def dbg(*args, **kwargs):
+    if DEBUG != "ON":
+        return
     if "flush" not in kwargs:
         kwargs["flush"] = True
     if "file" not in kwargs:

@@ -5,16 +5,10 @@ DEBUG = "OFF"
 
 
 def solve(R, C, H, V, G):
-    for line in G:
-        dbg(line)
     T = 0
     for i in range(R):
-        for j in range(C):
-            if G[i][j] == "@":
-                T += 1
-    dbg("T:", T, "H:", H, "V:", V)
+        T += sum([1 for c in G[i] if G[i] == "@"])
     if (T % (H + 1) != 0) or (T % (V + 1) != 0):
-        dbg(4)
         return "IMPOSSIBLE"
     vcuts = []
     t = 0
@@ -27,11 +21,8 @@ def solve(R, C, H, V, G):
             if j != C - 1 and len(vcuts) < V:
                 vcuts.append(j)
         elif t > (T // (V + 1)):
-            dbg(4)
             return "IMPOSSIBLE"
-    dbg("vcuts:", vcuts)
     if t != 0:
-        dbg(5)
         return "IMPOSSIBLE"
     rcells = (len(vcuts) + 1) * [0]
     for i in range(R):
@@ -41,22 +32,17 @@ def solve(R, C, H, V, G):
                 while cj < len(vcuts) and j > vcuts[cj]:
                     cj += 1
                 rcells[cj] += 1
-        dbg("rcells:", rcells)
         if sum(rcells) == T // (H + 1):
             for j in range(len(rcells) - 1):
                 if rcells[j] != rcells[j + 1]:
-                    dbg(6)
                     return "IMPOSSIBLE"
                 if rcells[0] != T // ((H + 1) * (V + 1)):
-                    dbg("7")
                     return "IMPOSSIBLE"
             for j in range(len((rcells))):
                 rcells[j] = 0
         elif sum(rcells) > (T // (H + 1)):
-            dbg("8")
             return "IMPOSSIBLE"
     if sum(rcells) != 0:
-        dbg("last")
         return "IMPOSSIBLE"
     return "POSSIBLE"
 

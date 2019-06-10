@@ -11,6 +11,7 @@
 **/*.pyc
 **/.pylint.out
 
+<<<<<<< HEAD
 # default compiled c/c++ programs
 **/a.out
 

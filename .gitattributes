@@ -1,8 +1,8 @@
 **/*.pyc
 
-advent-of-code/*.input binary
-advent-of-code/*.example binary
-advent-of-code/day-13-2-packet-scanners-old-run.txt binary
+advent_of_code/**/*.input binary
+advent_of_code/**/*.example binary
+advent_of_code/2017/day-13-2-packet-scanners-old-run.txt binary
 
 google_code_jam/**/*.out binary
 google_code_jam/**/*.out1 binary
@@ -15,10 +15,10 @@ google_code_jam/**/*.ex1 binary
 google_code_jam/**/*.ex2 binary
 google_code_jam/2019/qualifications/primes.txt binary
 
-machine-learning/**/*.csv binary
-machine-learning/**/*.xls binary
+machine_learning/**/*.csv binary
+machine_learning/**/*.xls binary
 
-matasano-crypto-challenges/**/*.in binary
+matasano_crypto_challenges/**/*.in binary
 
 rsync_experiment/A/**/* binary
 rsync_experiment/.A.backup/**/* binary

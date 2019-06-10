@@ -11,7 +11,11 @@
 **/*.pyc
 **/.pylint.out
 
-# mypy
+<<<<<<< HEAD
+# default compiled c/c++ programs
+**/a.out
+
+# MyPy cache
 **/.mypy_cache
 
 google_test/build/*

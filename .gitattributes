@@ -5,8 +5,15 @@ advent-of-code/*.example binary
 advent-of-code/day-13-2-packet-scanners-old-run.txt binary
 
 google_code_jam/**/*.out binary
+google_code_jam/**/*.out1 binary
+google_code_jam/**/*.out2 binary
 google_code_jam/**/*.in binary
+google_code_jam/**/*.in1 binary
+google_code_jam/**/*.in2 binary
 google_code_jam/**/*.ex binary
+google_code_jam/**/*.ex1 binary
+google_code_jam/**/*.ex2 binary
+google_code_jam/2019/qualifications/primes.txt binary
 
 machine-learning/**/*.csv binary
 machine-learning/**/*.xls binary

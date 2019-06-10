@@ -16,5 +16,3 @@ matasano_crypto_challenges/**/*.in binary
 rsync_experiment/A/**/* binary
 rsync_experiment/.A.backup/**/* binary
 rsync_experiment/B/**/* binary
-
-gamebots/messenger_football/**/*.log

@@ -11,41 +11,51 @@ def solve(A, programs):
     valid_response["P"] = ["P", "S"]
     valid_response["S"] = ["S", "R"]
 
-    mx_len = -inf
-    mx_program = None
-    for i in range(len(programs)):
-        if len(programs[i]) > mx_len:
-            mx_len = len(programs[i])
-            mx_program = programs[i]
+    mx_program = max(programs, key=len)
+    #dbg("mx_program:", mx_program)
 
     winning_program = []
-    for i in range(mx_len):
-        c = mx_program[i]
+    i = 0
+    while programs:
+        c = mx_program[i % len(mx_program)]
         response = valid_response[c]
+        #dbg("response", response)
+        #dbg("PROGRAMS:", programs)
         for program in programs:
             c2 = program[i % len(program)]
             response2 = valid_response[c2]
+            #dbg("response2", response)
             if response == response2:
                 continue
             elif set(response) & set(response2):
                 response = list(set(response) & set(response2))
             else:
                 return "IMPOSSIBLE"
-        winning_program.append(response)
-    for i, choice in enumerate(winning_program):
-        if len(choice) == 1:
-            winning_program[i] = choice[0]
-        elif len(choice) == 2:
-            winning_program[i] = choice[1]
+
+        if len(response) == 1:
+            response = response[0]
+        elif len(response) == 2:
+            response = response[1]
         else:
             raise RuntimeError("something wrong!")
-    programs_won = set()
-    for i, c in enumerate(winning_program):
-        for j, program in enumerate(programs):
-            winning_response = valid_response[program[i % len(program)]][1]
-            if c == winning_response:
-                programs_won.add(j)
-    if len(programs_won) != A:
+        #dbg("final response:", response)
+
+        remaining_programs = []
+        #dbg("checking programs:", programs)
+        for program in programs:
+            winning_move_for_program = valid_response[program[i % len(program)]][1]
+            if response == winning_move_for_program:
+                continue
+            remaining_programs.append(program)
+        programs = remaining_programs
+        #dbg("remaining programs:", programs)
+        if programs:
+            mx_program = max(programs, key=len)
+
+        winning_program.append(response)
+        i += 1
+
+    if programs:
         return "IMPOSSIBLE"
 
     return "".join(winning_program)

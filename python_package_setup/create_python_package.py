@@ -26,7 +26,7 @@ def main():
     ]
     func_kwargs = dict()
     if args.application_name:
-        setup_package_kwargs["application_name"] = args.application_name
+        func_kwargs["application_name"] = args.application_name
     setup_package(*func_args, **func_kwargs)
     print("Package setup complete.")
 

@@ -13,7 +13,7 @@ def main():
 def parse_arguments():
     parser = argparse.ArgumentParser()
     parser.description = ""
-    # parser.add_argument("PATH", help="*nix path to be converted.")
+    # parser.add_argument("PATH", help="")
     arguments = parser.parse_args()
     return arguments
 

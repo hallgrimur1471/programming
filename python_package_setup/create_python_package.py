@@ -18,21 +18,16 @@ def main():
         / args.PACKAGE_NAME
     )
     print(f"Setting up a basic python package at {beutified_package_path}")
+    func_args = list(
+        args.PYTHON_VERSION,
+        args.PACKAGE_NAME,
+        args.GITHUB_USERNAME,
+        Path(args.PACKAGE_DIR),
+    )
+    func_kwargs = dict()
     if args.application_name:
-        setup_package(
-            args.PYTHON_VERSION,
-            args.PACKAGE_NAME,
-            args.GITHUB_USERNAME,
-            Path(args.PACKAGE_DIR),
-            application_name=args.application_name,
-        )
-    else:
-        setup_package(
-            args.PYTHON_VERSION,
-            args.PACKAGE_NAME,
-            args.GITHUB_USERNAME,
-            Path(args.PACKAGE_DIR),
-        )
+        setup_package_kwargs["application_name"] = args.application_name
+    setup_package(*func_args, **func_kwargs)
     print("Package setup complete.")
 
 

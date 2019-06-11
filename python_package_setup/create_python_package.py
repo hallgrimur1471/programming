@@ -72,7 +72,6 @@ def setup_package(
 
     package_name_header = package_name[0].upper() + package_name[1:]
     package_name_header = package_name_header.replace("_", " ")
-    # TODO: add PYTHON_VERSION
     replacement_dict = {
         "{PYTHON_VERSION}": python_version,
         "{PACKAGE_NAME}": package_name,

@@ -20,6 +20,6 @@ machine_learning/**/*.xls binary
 
 matasano_crypto_challenges/**/*.in binary
 
-rsync_experiment/A/**/* binary
-rsync_experiment/.A.backup/**/* binary
-rsync_experiment/B/**/* binary
+junkyard/rsync_experiment/A/**/* binary
+junkyard/rsync_experiment/.A.backup/**/* binary
+junkyard/rsync_experiment/B/**/* binary

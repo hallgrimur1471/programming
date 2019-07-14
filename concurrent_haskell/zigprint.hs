@@ -2,7 +2,7 @@
 import Control.Concurrent
 
 main = do
-    forkIO (loop "shit ")
+    forkIO (loop "yes ")
     loop "nope! "
 
 loop ch = do

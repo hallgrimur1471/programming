@@ -1,0 +1,6 @@
+14. sun july 2019:
+Functions should preferably return "one thing". In C++ structs can help
+accomplish this.
+
+15. mon july 2019:
+In C++ NULL is a value designed for pointers, not variables.

@@ -6,3 +6,6 @@
 	path = parsec_in_haskell/parsec
 	url = https://github.com/haskell/parsec.git
 	branch = master
+[submodule "cryptography_experiments"]
+	path = cryptography_experiments
+	url = git@github.com:hallgrimur1471/cryptography_experiments

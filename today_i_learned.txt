@@ -4,3 +4,7 @@ accomplish this.
 
 15. mon july 2019:
 In C++ NULL is a value designed for pointers, not variables.
+
+16. mon july 2019:
+The problem with AES ECB is that it is stateless and deterministic; the same 16
+byte plaintext block will always produce the same 16 byte ciphertext.

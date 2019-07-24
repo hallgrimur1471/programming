@@ -33,7 +33,7 @@ $ file_to_upload="some_directory.tar.gz"; archive_description="Nydus linux parti
 ## View upload progress
 
 ```
-$ file_being_uploaded="some_directory.tar.gz"; tail -f ${${file_being_uploaded%.*.*}_upload_progress.log}
+$ file_being_uploaded="some_directory.tar.gz"; tail -f ${file_being_uploaded%.*.*}_upload_progress.log
 ```
 
 ## Sending a job request to download an archive

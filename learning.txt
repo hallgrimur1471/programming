@@ -8,3 +8,8 @@ In C++ NULL is a value designed for pointers, not variables.
 16. mon july 2019:
 The problem with AES ECB is that it is stateless and deterministic; the same 16
 byte plaintext block will always produce the same 16 byte ciphertext.
+
+27. sat july 2019:
+Diffie hellman is useful for establishing a shared secret but is susceptible
+to man-in-the middle attacks. To combat that, RSA is often used to sign the
+shared secret using asymmetric keys.

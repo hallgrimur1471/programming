@@ -19,7 +19,6 @@ def main():
         run_break_over_alert()
 
 
-
 def should_be_working_now():
     minute = get_current_minute()
     return should_be_working_during(minute)
@@ -33,7 +32,6 @@ def should_be_working_during(minute):
     return (5 <= minute and minute < 30) or (35 <= minute)
 
 
-
 def wait_until_break_is_over():
     tprint("Waiting until break is over ...")
     wait_until(lambda: should_be_working_now())
@@ -44,14 +42,15 @@ def tprint(*args, **kwargs):
     current_time_str = time.strftime("%H:%M:%S", current_time)
     print("[{}]:".format(current_time_str), *args, **kwargs)
 
+
 def wait_until(criteria_is_met):
     while not criteria_is_met():
         time.sleep(0.2)
 
+
 def run_break_over_alert():
     tprint("It's time to start working again!")
     play_sound("airship_clear.mp3")
-
 
 
 def play_sound(sound_file_name):

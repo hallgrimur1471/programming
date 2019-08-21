@@ -2,16 +2,21 @@
 
 import time
 
+from playsound import playsound
+
 
 def main():
     if next_event_is_break():
+        tprint("Waiting until next break ...")
         wait_until_break()
         run_break_alert()
 
     while True:
+        tprint("Waiting until break is over ...")
         wait_until_break_is_over()
         run_break_over_alert()
 
+        tprint("Waiting until next break ...")
         wait_until_break()
         run_break_alert()
 
@@ -44,16 +49,19 @@ def wait_until_break_is_over():
 
 def run_break_alert():
     tprint("It's time for a break!")
+    playsound("sounds/stage_clear.mp3")
 
 
 def run_break_over_alert():
     tprint("It's time to start working again!")
+    playsound("sounds/airship_clear.mp3")
 
 
 def tprint(*args, **kwargs):
-    print("[{}]".format(time.localtime()), *args, **kwargs)
+    current_time = time.localtime()
+    current_time_str = time.strftime("%H:%M:%S", current_time)
+    print("[{}] ".format(current_time_str), *args, **kwargs)
 
 
 if __name__ == "__main__":
     main()
-    current_minute = get_current_minute()

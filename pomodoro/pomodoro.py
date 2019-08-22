@@ -20,15 +20,21 @@ def main():
 
 
 def should_be_working_now():
+    hour = get_current_hour()
     minute = get_current_minute()
-    return should_be_working_during(minute)
+    return should_be_working_during(hour, minute)
 
+def get_current_hour():
+    return time.localtime().tm_hour
 
 def get_current_minute():
     return time.localtime().tm_min
 
 
-def should_be_working_during(minute):
+def should_be_working_during(hour, minute):
+    if hour % 3 == 0:
+        return (35 <= minute)
+
     return (5 <= minute and minute < 30) or (35 <= minute)
 
 

@@ -67,3 +67,12 @@ $ file_being_decompressed="nydus_ubuntu16.tar.gz"; watch -n 1 "ls -lash | grep $
 ncompressed%.*.*}; echo; tail ${file_being_decompressed%.*.*}_decompression_progress.log"
 ```
 
+## List archives in vault
+
+```
+aws glacier initiate-job --account-id - --vault-name xelnaga --job-parameters '{"Type": "inventory-retrieval"}'
+
+# read job-id from output and replace in next command:
+
+aws glacier get-job-output --account-id - --vault-name xelnaga --job-id 'DioUrZvyOyE07g_QeyblZuDnM3_XLw2JneifktG9iKDs57vasdfUF2LbnFc6VPU1r3khsiUleHvxsU3IR67FJFfpP1-RX' vault_inventory.json
+```

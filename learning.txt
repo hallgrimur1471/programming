@@ -13,3 +13,9 @@ byte plaintext block will always produce the same 16 byte ciphertext.
 Diffie hellman is useful for establishing a shared secret but is susceptible
 to man-in-the middle attacks. To combat that, RSA is often used to sign the
 shared secret using asymmetric keys.
+
+15. wed august 2019:
+Injecting a single-byte value in range [0, 255] to a c program is difficult
+because single-byte utf-8 characters only range in values [0, 127].
+To inject bytes from [0, 256], to char* argv[] of a c program the c function
+execl can be used and also `printf "\x$(printf %x 255)"`.

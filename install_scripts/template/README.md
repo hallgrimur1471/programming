@@ -1,4 +1,4 @@
-# Installing project
+# Installing
 
 ```
 ./install.py

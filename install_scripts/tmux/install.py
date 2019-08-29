@@ -22,7 +22,7 @@ def parse_arguments():
     parser.description = ""
     parser.add_argument(
         "--dont-install-configs",
-        help="Don't install configs/tmux.conf to ~/.tmux.conf"
+        help="Don't install configs/tmux_v2_9.conf to ~/.tmux.conf"
     )
     arguments = parser.parse_args()
     return arguments
@@ -43,7 +43,7 @@ def install_tmux():
 def install_configs():
     tprint("installing configs ...")
     project_root_dir = get_project_root_dir()
-    config_file = "configs/tmux.conf"
+    config_file = "configs/tmux_v2_9.conf"
     config_file_path = os.path.join(project_root_dir, config_file)
     destination = os.path.join(os.environ['HOME'], '.tmux.conf')
 

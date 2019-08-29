@@ -8,6 +8,8 @@ RUN apt-get update && apt-get upgrade -y
 # Install some essentials
 RUN apt-get install -y \
     curl \
+    wget \
+    git \
     sudo
 
 # Install python

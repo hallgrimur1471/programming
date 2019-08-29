@@ -5,6 +5,9 @@ WORKDIR /usr/local/workdir
 # Update software
 RUN apt-get update && apt-get upgrade -y
 
+# Install tzdata avoiding it's interactive questions
+RUN DEBIAN_FRONTEND=noninteractive; apt-get install tzdata
+
 # Install some essentials
 RUN apt-get install -y \
     curl \

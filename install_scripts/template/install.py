@@ -48,9 +48,7 @@ def install_apt_dependencies(apt_dependencies):
 
 def install_pip_dependencies(pip_dependencies):
     for dependency in pip_dependencies:
-        try_cmd(
-            f"python3 -m pip install --user {dependency}"
-        )
+        try_cmd(f"python3 -m pip install --user {dependency}")
 
 
 def get_project_root_dir():
@@ -82,15 +80,12 @@ def try_cmd(*args, **kwargs):
         if completed_process.stdout or completed_process.stderr:
             error_msg += "\n"
         if completed_process.stdout:
-            error_msg += (
-                f"\nHere is its stdout:\n{completed_process.stdout}"
-            )
+            error_msg += f"\nHere is its stdout:\n{completed_process.stdout}"
         if completed_process.stderr:
-            error_msg += (
-                f"\nHere is its stderr:\n{completed_process.stderr}"
-            )
+            error_msg += f"\nHere is its stderr:\n{completed_process.stderr}"
 
         raise RuntimeError(error_msg)
+
 
 def cmd(*args, **kwargs):
     if "shell" not in kwargs:
@@ -100,10 +95,11 @@ def cmd(*args, **kwargs):
 
     if "dont_print_command" not in kwargs:
         command = args[0]
-        tprint(command)
+        tprint(f"$ {command}")
 
     completed_process = subprocess.run(*args, **kwargs)
     return completed_process
+
 
 if __name__ == "__main__":
     main()

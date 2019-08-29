@@ -13,10 +13,10 @@ Installs the following stuff with my custom configs:
 
 ```
 sudo apt-get install -y curl
-curl -o awesome_ubuntu_18_setup.sh \
+curl -o awesome_ubuntu_18_setup.py \
   https://raw.githubusercontent.com/hallgrimur1471/programming/master/install_scripts/awesome_ubuntu_18_setup/install.py
-sudo chmod +x awesome_ubuntu_18_setup.sh
-./awesome_ubuntu_18_setup.sh
+sudo chmod +x awesome_ubuntu_18_setup.py
+./awesome_ubuntu_18_setup.py
 ```
 
 # Testing the install script

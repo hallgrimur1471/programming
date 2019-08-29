@@ -44,16 +44,6 @@ def run_pytest_on_this_file():
 
 # TESTS #
 
-# run_install_scripts(
-#    [
-#        "python/ubuntu_18/install.sh",
-#        "essentials/install.py",
-#        "ultimate_vim_configuration/install.py",
-#        "tmux/install.py",
-#        "sublime_text_3/install.py",
-#    ]
-# )
-
 
 def test_python_is_installed():
     assert_program_is_installed("python3.7")

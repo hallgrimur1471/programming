@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  (2>&1 echo "This script must be sourced (source install.sh)")
+  exit 1
+fi
+
 set -e
 set -x
 

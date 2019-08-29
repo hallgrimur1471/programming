@@ -22,7 +22,7 @@ def parse_arguments():
     parser.description = ""
     parser.add_argument(
         "--dont-install-configs",
-        help="Don't install configs/tmux_v2_9.conf to ~/.tmux.conf"
+        help="Don't install configs/tmux_v2_9.conf to ~/.tmux.conf",
     )
     arguments = parser.parse_args()
     return arguments
@@ -40,14 +40,16 @@ def install_tmux():
     latest_release_url = find_url_to_latest_release()
     install_tmux_from_url(latest_release_url)
 
+
 def install_configs():
     tprint("installing configs ...")
     project_root_dir = get_project_root_dir()
     config_file = "configs/tmux_v2_9.conf"
     config_file_path = os.path.join(project_root_dir, config_file)
-    destination = os.path.join(os.environ['HOME'], '.tmux.conf')
+    destination = os.path.join(os.environ["HOME"], ".tmux.conf")
 
     subprocess.run(f"cp {config_file_path} {destination}", shell=True)
+
 
 def find_url_to_latest_release():
     version_tag = find_version_tag_of_latest_release()
@@ -73,6 +75,7 @@ def install_tmux_from_url(tarball_url):
         + f"sudo make install",
         shell=True,
     )
+
 
 def get_project_root_dir():
     dn = os.path.dirname
@@ -102,9 +105,11 @@ def open_url(url):
     body_string = http_response.read().decode()
     return body_string
 
+
 def tprint(*args, **kwargs):
     this_file = os.path.basename(__file__)
     print(f"[{this_file}]:", *args, flush=True, **kwargs)
+
 
 if __name__ == "__main__":
     main()

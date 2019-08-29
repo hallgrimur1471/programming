@@ -12,7 +12,11 @@ Installs the following stuff with my custom configs:
 # Installing
 
 ```
-./install.py
+sudo apt-get install -y curl
+curl -o awesome_ubuntu_18_setup.sh \
+  https://raw.githubusercontent.com/hallgrimur1471/programming/master/install_scripts/awesome_ubuntu_18_setup/install.py
+sudo chmod +x awesome_ubuntu_18_setup.sh
+./awesome_ubuntu_18_setup.sh
 ```
 
 # Testing the install script

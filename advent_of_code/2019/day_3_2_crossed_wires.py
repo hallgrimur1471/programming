@@ -10,13 +10,13 @@ def solve():
     a_route = input().split(",")
     b_route = input().split(",")
 
-    a_visited = calculate_visited(a_route)
-    b_visited = calculate_visited(b_route)
-
-    commonly_visited = a_visited & b_visited
-
     a_travel_dict = calculate_travel_dict(a_route)
     b_travel_dict = calculate_travel_dict(b_route)
+
+    a_visited = set(a_travel_dict.keys())
+    b_visited = set(b_travel_dict.keys())
+
+    commonly_visited = a_visited & b_visited
 
     steps = steps_for_minimized_signal_delay(
         a_travel_dict, b_travel_dict, commonly_visited
@@ -24,24 +24,8 @@ def solve():
     return steps
 
 
-def calculate_visited(route):
-    visited = set()
-    p = (0, 0)
-    for step in route:
-        (direction, distance) = (step[0], int(step[1:]))
-        delta = determine_delta(direction)
-        while distance:
-            p = add_pairs(p, delta)
-            visited.add(p)
-            distance -= 1
-    return visited
-
-    return set()
-
-
 def calculate_travel_dict(route):
     travel_dict = dict()
-    visited = set()
     p = (0, 0)
     traveled = 0
     for step in route:
@@ -49,21 +33,14 @@ def calculate_travel_dict(route):
         delta = determine_delta(direction)
         for _ in range(distance):
             p = add_pairs(p, delta)
-            # if p in travel_dict:
-            #    traveled = travel_dict[p]
-            # else:
-            #    traveled += 1
             traveled += 1
             travel_dict[p] = traveled
-            visited.add(p)
     return travel_dict
 
 
 def steps_for_minimized_signal_delay(
     a_travel_dict, b_travel_dict, cross_sections
 ):
-    # print(cross_sections)
-    # print(a_travel_dict)
     a_cross_sections_travels = [a_travel_dict[p] for p in cross_sections]
     b_cross_sections_travels = [b_travel_dict[p] for p in cross_sections]
 
@@ -89,10 +66,7 @@ def determine_delta(direction):
 
 
 def add_pairs(a, b):
-    # print(a, b)
-    c = (a[0] + b[0], a[1] + b[1])
-    # print(c)
-    return c
+    return (a[0] + b[0], a[1] + b[1])
 
 
 def find_distance_closest_to_zero(v):

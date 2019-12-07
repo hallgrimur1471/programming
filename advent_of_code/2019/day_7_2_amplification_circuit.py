@@ -5,6 +5,8 @@ from collections import deque
 from dataclasses import dataclass
 import logging
 import itertools
+import copy
+import time
 
 import pytest
 
@@ -13,9 +15,10 @@ def main():
     program = list(map(int, input().split(",")))
 
     max_thrust = find_max_feedback_thrust(program)
+
     print(
-        f"The highest signal generated with feedback that "
-        + f"can be sent to the thrusters is {max_thrust}"
+        "The highest signal generated with a feedback configuration to "
+        + f"be sent to the thrusters is {max_thrust} "
     )
 
 
@@ -32,8 +35,9 @@ def find_feedback_thrust_for_permutation(program, permutation):
     for _ in range(5):
         amplifiers.append(IntcodeComputer())
 
-    for amp in amplifiers:
-        amp.load_program(program)
+    for amplifier in amplifiers:
+        amplifier_program = copy.copy(program)
+        amplifier.load_program(amplifier_program)
 
     for i in range(5):
         amplifier = amplifiers[i]
@@ -384,8 +388,7 @@ class TestFindMaxThrust:
         assert max_thrust == 65210
 
 
-class TestFindFeedbackThrustForPermutation:
-    # @pytest.mark.skip()
+class TestFindMaxFeedbackThrust:
     def test_finds_correct_max_feedback_thrust_1(self):
         program_str = (
             "3,26,1001,26,-4,26,3,27,1002,27,2,27,1,27,26,"
@@ -393,13 +396,10 @@ class TestFindFeedbackThrustForPermutation:
         )
         program = list(map(int, program_str.split(",")))
 
-        max_thrust = find_feedback_thrust_for_permutation(
-            program, [9, 8, 7, 6, 5]
-        )
+        max_thrust = find_max_feedback_thrust(program)
 
         assert max_thrust == 139629729
 
-    @pytest.mark.skip()
     def test_finds_correct_max_feedback_thrust_2(self):
         program_str = (
             "3,52,1001,52,-5,52,3,53,1,52,56,54,1007,54,5,55,1005,55,26,1001,"
@@ -408,9 +408,7 @@ class TestFindFeedbackThrustForPermutation:
         )
         program = list(map(int, program_str.split(",")))
 
-        max_thrust = find_feedback_thrust_for_permutation(
-            program, [9, 7, 8, 5, 6]
-        )
+        max_thrust = find_max_feedback_thrust(program)
 
         assert max_thrust == 18216
 

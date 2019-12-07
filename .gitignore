@@ -22,6 +22,9 @@
 # ignore default c/c++ binary files
 **/a.out
 
+# ignore build directories
+**/build
+
 # ignore MyPy cache
 **/.mypy_cache
 

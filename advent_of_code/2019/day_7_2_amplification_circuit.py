@@ -46,14 +46,12 @@ def find_feedback_thrust_for_permutation(program, permutation):
         for i in range(5):
             amplifier = amplifiers[i]
             amplifier.write_to_input(last_amplifier_output)
-            # print(f"Before run, Amplifier {i} input pipe: {amplifier._input}")
             while not amplifier.is_output_available():
                 amplifier.step()
                 if amplifier.has_halted():
                     return last_amplifier_e_output
             amplifier_output = amplifier.read_output()
             last_amplifier_output = amplifier_output
-            # print(f"Amplifier {i} output: {last_amplifier_output}")
             assert not amplifier.is_output_available()
             if i == 4:
                 last_amplifier_e_output = amplifier_output
@@ -109,7 +107,6 @@ class IntcodeComputer:
     def step(self):
         if self._halt:
             raise RuntimeError("Can not step because computer has halted.")
-        # print("Parsing next instruction ...")
         instruction = self._program_parser.parse_instruction(
             self._program, self._instruction_pointer
         )

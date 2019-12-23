@@ -23,6 +23,5 @@ int main(int argc, char *argv[]) {
     break;
   }
   }
-  std::cout << "Done" << std::endl;
   return 0;
 }

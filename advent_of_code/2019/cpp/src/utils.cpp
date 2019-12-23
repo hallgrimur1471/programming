@@ -14,4 +14,11 @@ std::string get_input_file_path(int day_number) {
   return input_file_path;
 };
 
+void print_vector(std::vector<int> vector_) {
+  for (auto element : vector_) {
+    std::cout << element << " ";
+  }
+  std::cout << std::endl;
+};
+
 } // end utils namespace

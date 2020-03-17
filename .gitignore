@@ -1,3 +1,8 @@
+# ignore files with no extension
+*
+!/**/
+!*.*
+
 # ignore files with certain extensions
 **/*.o
 **/*.hi

@@ -3,29 +3,33 @@
 !/**/
 !*.*
 
-# ignore files with certain extensions
+# don't ignore Dockerfiles
+!**/Dockerfile
+
+# ignore C++ object files
 **/*.o
+
+# ignore Haskel's interface files
 **/*.hi
+
+# ignore Vim swap files
 **/*.swp
 **/*.swo
-**/*.pyc
-**/.pylint.out
 
-# default compiled c/c++ programs
+# ignore Python compilation files
+**/*.pyc
+
+# ignore default c/c++ binary files
 **/a.out
 
-# MyPy cache
+# ignore build directories
+**/build
+
+# ignore MyPy cache
 **/.mypy_cache
 
-# Rust, compiled code
+# ignore compiled Rust code
 **/target
 
-junkyard/google_test/build/*
-google_code_jam/2017/round1a/contestants
-**/project.progress
-scheme_interpreter_written_in_haskell/wyasi48h.pdf
-advent_of_code/merged.py
-matasano_crypto_challenges/**/*.egg-info
-junkyard/rsync_experiment/A/large_file
-junkyard/rsync_experiment/.A.backup/large_file
-junkyard/rsync_experiment/B/large_file
+# ignore Python package .egg-info
+**/*.egg-info

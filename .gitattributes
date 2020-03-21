@@ -23,3 +23,8 @@ matasano_crypto_challenges/**/*.in binary
 junkyard/rsync_experiment/A/**/* binary
 junkyard/rsync_experiment/.A.backup/**/* binary
 junkyard/rsync_experiment/B/**/* binary
+
+/**/*.in binary
+
+kattis/**/*.in1 binary
+kattis/**/*.in2 binary

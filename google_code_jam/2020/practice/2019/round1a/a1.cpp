@@ -1,7 +1,9 @@
+//
+// O(N^2) solution
+//
 #include <bits/stdc++.h>
 
-//#define watch(x) cerr << (#x) << " is " << (x) << endl
-#define watch(x)
+#define watch(x) cerr << (#x) << " is " << (x) << endl
 
 typedef long long ll;
 

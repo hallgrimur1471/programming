@@ -48,16 +48,13 @@ void solve(int T, int N, int M) {
     mills.fill(bc[n]);
     OPI(mills);
     array<int, 18> brs;
+    int r = 0;
     for (int i = 0; i < 18; i++) {
       int br;
       cin >> br;
-      if (br == -1) {
-        exit(1);
-      } else {
-        brs[i] = br;
-      }
+      assert(br != -1);
+      r = (r + br) % bc[n];
     }
-    int r = accumulate(brs.begin(), brs.end(), 0) % bc[n];
     rs[n] = r;
   }
 
@@ -66,9 +63,7 @@ void solve(int T, int N, int M) {
   cout << G << endl;
   int ans;
   cin >> ans;
-  if (ans == -1) {
-    exit(1);
-  }
+  assert(ans != -1);
 }
 
 int main() {

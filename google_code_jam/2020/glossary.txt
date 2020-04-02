@@ -1,0 +1,6 @@
+// Run interactive problem:
+run-when-modified.py . .cpp 'clear; g++ -std=c++14 -pthread -O3 b.cpp && python3 ../../../interactive_runner.py python3 b_testing_tool.py 0 -- ./a.out'
+
+// Run normal problem:
+run-when-modified.py . .cpp 'clear; g++ -std=c++14 -pthread -O3 b.cpp && cat b.ex | time ./a.out'
+

@@ -56,6 +56,10 @@ fi
 printf "Do you want to set this machine up for development? "
 printf "(tmux & vim with configs, etc) [y/n]\n"
 read is_set_up_for_development
+printf "Restart is required for some changes to get through, "
+printf "such as change of hostname.\n"
+echo "Do you want the machine to be restarted at script finish? [y/n]"
+read is_reboot_at_finish
 
 # Stop on errors
 set -e
@@ -105,6 +109,8 @@ sudo apt-get install -y \
     python3.8 \
     python3.8-venv \
     python3.8-dev
+curl https://bootstrap.pypa.io/get-pip.py -o /tmp/get-pip.py
+sudo -H python3.8 /tmp/get-pip.py
 
 # Maybe set machine up for development
 if [[ "$is_set_up_for_development" == "y" ]]; then
@@ -115,10 +121,8 @@ if [[ "$is_set_up_for_development" == "y" ]]; then
 fi
 
 # Maybe reboot
-printf "Restart is required for some changes to get through, "
-printf "such as change of hostname.\n"
-echo "Restart now? [y/n]"
-read is_restart_now
-if [[ "$is_restart_now" == "y" ]]; then
+if [[ "$is_reboot_at_finish" == "y" ]]; then
   sudo reboot now
 fi
+
+echo "Bootstrap successful."

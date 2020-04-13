@@ -115,8 +115,7 @@ sudo -H python3.8 /tmp/get-pip.py
 # Maybe set machine up for development
 if [[ "$is_set_up_for_development" == "y" ]]; then
   python3.8 -m pip install --user drvn.installer
-  drvn_installer --install vim --with-drvn-configs
-  drvn_installer --install tmux --with-drvn-configs
+  drvn_installer --install vim,tmux --with-drvn-configs
   drvn_installer --install all_python_versions
 fi
 

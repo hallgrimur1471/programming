@@ -149,9 +149,9 @@ for region in regions:
         subprocess.run(command, shell=True, check=False)
 ```
 
-This revealed a fucntion in region ap-southeast-1.
+This revealed a function in region ap-southeast-1. The src code for the function was downloaded.
 
-Calls to the lambda function have to go through API Gateway (see policy)
+Calls to the lambda function have to go through API Gateway (see policy).
 
 
 ## API Gateway
@@ -164,10 +164,9 @@ aws --region=ap-southeast-1 apigateway get-rest-apis
 
 These URLS serve the function:
 
-https://cwlw44ht84.execute-api.ap-southeast-1.amazonaws.com/Prod
-https://cwlw44ht84.execute-api.ap-southeast-1.amazonaws.com/Stage
+* https://cwlw44ht84.execute-api.ap-southeast-1.amazonaws.com/Prod
+* https://cwlw44ht84.execute-api.ap-southeast-1.amazonaws.com/Stage
 
 ## DynamoDB
 
 FLAG7 is in dynamodb:us-east-1:tables:CardDetails:items
-

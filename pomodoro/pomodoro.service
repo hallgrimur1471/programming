@@ -1,0 +1,15 @@
+[Unit]
+Description=Systemd wrapper to run pomodoro software
+
+[Service]
+User=drvn
+Type=simple
+ExecStart=/bin/bash -c "stdbuf -o L /usr/bin/python3.6 /usr/local/share/pomodoro.py"
+StandardOutput=journal
+RestartSec=60
+Restart=always
+KillSignal=SIGINT
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

@@ -96,7 +96,7 @@ $ python3 calculate_modular_cube_root.py
 x is the cubic number of 2114072452918665508166256064801180100116366689192929952901119156779530
 ```
 
-So this is our value of m, let's try converting it to bytes using the inverse of that bytes_to_long function we saw in secret.txt:
+Let's try converting it to bytes using the inverse of that bytes_to_long function we saw in secret.txt:
 
 ```
 $ python3

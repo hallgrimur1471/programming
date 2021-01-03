@@ -118,16 +118,16 @@ $ echo NjQuMDMzNDg2IDsgMjEuOTAwMTMz | base64 -d
 
 Looks like decimal GPS coordinates, looking them up in Google Maps:
 
-![Challenge description](static/gps_1.png)
+![GPS Coordinates](static/gps_1.png)
 
 The point is in the Gulf of Botnica which doesn't seem conected to the challenge's context in any strong way.
 
 The point is though, on the same latitude degree as the southern part of Iceland and this CTF is organized by Icelanders so let's try looking up 64.033486, -21.900133 instead:
 
-![Challenge description](static/gps_2.png)
+![GPS Coordinates](static/gps_2.png)
 
 This point is just outside a road in "Sléttuhlíd Hafnarfjördur" which is just outside the capital area of Iceland. So could it be that the next clue is physically hidden at that place? At this point in the competition I was located in Vestmannaeyjar and my team mate in 4 hour drive from that place so we could not check. My friend Tryggvi who lives nearby was however willing to go and check, so he joined the team! At the coordinates Tryggvi found this:
 
-![Challenge description](static/qr_code.jpg)
+![QR Code](static/qr_code.jpg)
 
 Tryggvi was able to read this funky looking QR code with his Google Pixel phone which finally revealed the challenge flag: `IceCTF{look_at_all_these_christmas_trees}`

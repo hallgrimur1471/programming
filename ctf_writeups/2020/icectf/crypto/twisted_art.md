@@ -10,7 +10,7 @@ Challenge hint:
 
 art.png:
 
-![Challenge hint](static/hint.png)
+![Challenge hint](static/art.png)
 
 enc:
 

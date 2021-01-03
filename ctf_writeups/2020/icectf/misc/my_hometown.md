@@ -26,14 +26,14 @@ Enter passphrase:
 steghide: could not extract any data with that passphrase!
 ```
 
-So we must find the password. This image is a coverphoto for the movie "Eurovision Song Contest: The Story of Fire Saga" of Lars Erickssong (Will Ferrell) and Sigrit Ericksdóttir (Rachel McAdams). Those who have watched that movie know that the hometown of those movie characters is Húsavík. The challenge name is "My Hometown" so on my first try I guessed `husavik` and it was correct!
+Expectedly it didn't work. This image is a coverphoto for the movie "Eurovision Song Contest: The Story of Fire Saga" of Lars Erickssong (Will Ferrell) and Sigrit Ericksdóttir (Rachel McAdams). Those who have watched that movie know that the hometown of those movie characters is Húsavík. The challenge name is "My Hometown" so we guess the password `husavik` (got it on my first try in the CTF!).
 
 ```bash
 $ steghide extract -sf FS.jpg -p husavik
 wrote extracted data to "secret.txt".
 ```
 
-Let's check the contents of that extracted file:
+Success. Let's check the contents of that extracted file:
 
 ```bash
 $ cat secret.txt

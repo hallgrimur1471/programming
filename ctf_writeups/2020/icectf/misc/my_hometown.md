@@ -47,7 +47,7 @@ This looks like Python code and by Googling that bytes_to_long function it seems
 
 There is an undeclared variable `m` in the code which we can guess stands for `message` and we can guess the variable `c` stands for `ciphertext`.
 
-We can see the ciphertext was generated with moduler exponentiation of the message. So to decrypt this we must find the cube root of `c` modulo `n`.
+We can see the ciphertext was generated with modular exponentiation of the message. So to decrypt this we must find the cube root of `c` modulo `n`.
 
 ```
 $ python3
@@ -64,7 +64,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 b'NjQuMC\x8c\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00'
 ```
 
-These results look giberish, and they are because trying to find the modular cube root of c this way introduces big floating point errors. I used [this](https://stackoverflow.com/a/637321) algorith I found on Stack overflow to calculate `m` with the answer's default accuracy of 27:
+These results look giberish, and they are actually, because trying to find the modular cube root of c this way introduces big floating point errors. I used [this](https://stackoverflow.com/a/637321) algorith I found on Stack overflow to calculate `m` with the answer's default accuracy of 27 (x in this algorithm is the c):
 
 ```python
 from decimal import *
@@ -87,7 +87,6 @@ diff = x - ranswer ** Decimal(3)
 if diff == Decimal(0):
     print("x is the cubic number of", ranswer)
 else:
-    print("x has a cubic root of ", answer)
 ```
 
 This resulted in a more promising looking value of m:

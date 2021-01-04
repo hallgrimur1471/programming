@@ -26,7 +26,7 @@ $ xxd enc
 
 Solving this challenge requires the knowledge that random numbers in Python can be predicted. Since Python 2.3 the RNG in python's standard library random module is the [MT19937 Mersenne Twister](https://en.wikipedia.org/wiki/Mersenne_Twister). MT19937 passes most tests for statistical randomness but is not cryptographically secure. The internal state of MT19937 consists of 624 32 bit integers which [can be reverse enginnered and cloned](https://cryptopals.com/sets/3/challenges/23) by knowing the last 624 32 bit outputs from the RNG.
 
-From the challenge hint it seems like enc contains the encrypted flag which has been encrypted by XOR-ing the plaintext flag with a key that consists of 27 random bytes.
+From the challenge hint it seems like `enc` contains the encrypted flag which has been encrypted by XOR-ing the plaintext flag with a key that consists of 27 random bytes. We need to know this key to get the flag.
 
 By looking at `art.png` it looks like it's pixels are randomly generated. Let's look at the image's properties:
 

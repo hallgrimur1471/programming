@@ -67,7 +67,7 @@ So for a random.randint(0, 255) value how can we know what the two genrand_int32
 
 But in which order were the pixels generated? We will start by guessing the most natural order for a programmer to do it.
 
-To clone the MT19937 we can use [randcrack.py](https://github.com/tna0y/Python-random-module-cracker). 
+To actually clone the MT19937 we can use [randcrack.py](https://github.com/tna0y/Python-random-module-cracker). 
 
 After we have cloned the MT19937 we can predict outputs from `genrand_int32` but we want to predict outputs from `randint(0, 255)`. To solve that we write a `predict_randint` function based on the pythnon2.7 src code:
 

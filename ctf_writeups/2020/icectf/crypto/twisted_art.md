@@ -53,7 +53,7 @@ self.random() calls the class's superclass which is a C extension (Modules/_rand
 
 ![image](static/py27_random_superclass.png)
 
-random_random calls genrand_int32 twice:
+random_random calls genrand_int32 *twice*:
 
 ![image](static/py27_random_random.png)
 

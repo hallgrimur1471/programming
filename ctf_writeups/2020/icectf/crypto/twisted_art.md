@@ -55,6 +55,10 @@ self.random() calls the class's superclass which is a C extension (Modules/_rand
 
 random_random calls genrand_int32 twice:
 
+![image](static/py27_random_random.png)
+
+genrand_int32 is the 32 bit output from MT19937:
+
 ![image](static/py27_genrand_int32.png)
 
 It's those outputs from genrand_int32 that we must feed to a MT19937 cloner.

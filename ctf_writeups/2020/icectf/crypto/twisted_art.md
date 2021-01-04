@@ -41,17 +41,20 @@ To clone the RNG we need at least 624 32 bit outputs from the underlying MT19937
 
 Let's look at the [src code](https://www.python.org/downloads/source/) of python2.7 to see how `randint(0, 255)` is calculated:
 
-[Lib/random.py -> randint calls randrange](https://github.com/python/cpython/blob/2.7/Lib/random.py#L240)
+[Lib/random.py -> randint calls randrange:](https://github.com/python/cpython/blob/2.7/Lib/random.py#L240)
 
 ![image](static/py27_randint.png)
 
-[Lib/random.py -> randrange usually calls self.random() (line 218)](https://github.com/python/cpython/blob/2.7/Lib/random.py#L218)
+Lib/random.py -> randrange usually calls self.random() (line 218):
+
 ![image](static/py27_randrange.png)
 
 self.random() calls the class's superclass which is a C extension (Modules/_randommodule.c):
+
 ![image](static/py27_random_superclass.png)
 
 random_random calls genrand_int32 twice:
+
 ![image](static/py27_genrand_int32.png)
 
 It's those outputs from genrand_int32 that we must feed to a MT19937 cloner.

@@ -45,7 +45,7 @@ Let's look at the [src code](https://www.python.org/downloads/source/) of python
 
 ![image](static/py27_randint.png)
 
-Lib/random.py -> randrange usually calls self.random() (line 218):
+randrange usually calls self.random() (line 218):
 
 ![image](static/py27_randrange.png)
 

@@ -33,3 +33,6 @@
 
 # ignore Python package .egg-info
 **/*.egg-info
+
+# ignore vscode files
+.vscode

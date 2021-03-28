@@ -14,7 +14,7 @@ int main() {
   cin >> T;
   for (int t = 1; t <= T; t++) {
     solve();
-    // cout << "Case #" << t << ": " << ans << "\n";
+    // cout << "Case #" << t << ": " << ans << endl;
   }
   return 0;
 }

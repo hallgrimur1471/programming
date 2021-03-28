@@ -1,9 +1,11 @@
 // Run interactive problem:
-// run-when-modified.py . .cpp 'clear; g++ -std=c++14 -pthread -O3 b.cpp && python3 ../../../interactive_runner.py python3 b_testing_tool.py 0 -- ./a.out'
+// run-when-modified.py . .cpp 'clear; g++ -std=c++14 -pthread -O3 b.cpp &&
+// python3 ../../../interactive_runner.py python3 b_testing_tool.py 0 --
+// ./a.out'
 
 // Run normal problem:
-// run-when-modified.py . .cpp 'clear; g++ -std=c++14 -pthread -O3 b.cpp && cat
-// b.ex | time ./a.out'
+// svarmi_watch . .cpp "clear; g++ a.cpp -std=c++17 -pthread -O2 && ./a.out <
+// a.ex"
 
 // Start of file
 #include <bits/stdc++.h>
@@ -15,12 +17,13 @@ typedef pair<int, int> ipair;
 
 // inject to std how to hash a pair of ints
 namespace std {
-template <> struct hash<pair<int, int>> {
+template <>
+struct hash<pair<int, int>> {
   size_t operator()(pair<int, int> const &p) const noexcept {
     return hash<int>()(p.first) ^ hash<int>()(p.second);
   }
 };
-} // namespace std
+}  // namespace std
 
 // Create Mersenne Twister 19937
 mt19937 rng(1234);
@@ -29,17 +32,17 @@ mt19937 rng(1234);
 #define watch(x) cout << (#x) << " is " << (x) << endl
 
 // Print vector's values to stdout
-#define OPI(v)                                                                 \
-  for (auto e : v) {                                                           \
-    cout << e << " ";                                                          \
-  }                                                                            \
+#define OPI(v)        \
+  for (auto e : v) {  \
+    cout << e << " "; \
+  }                   \
   cout << "\n";
 
 // Print vector's values to stderr
-#define EPI(v)                                                                 \
-  for (auto e : v) {                                                           \
-    cerr << e << " ";                                                          \
-  }                                                                            \
+#define EPI(v)        \
+  for (auto e : v) {  \
+    cerr << e << " "; \
+  }                   \
   cerr << "\n";
 
 /* Function to check if x is power of 2*/

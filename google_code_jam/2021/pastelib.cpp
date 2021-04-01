@@ -31,19 +31,19 @@ mt19937 rng(1234);
 // Debug printing
 #define watch(x) cout << (#x) << " is " << (x) << endl
 
-// Print vector's values to stdout
-#define OPI(v)        \
-  for (auto e : v) {  \
-    cout << e << " "; \
-  }                   \
-  cout << "\n";
-
-// Print vector's values to stderr
-#define EPI(v)        \
-  for (auto e : v) {  \
-    cerr << e << " "; \
-  }                   \
-  cerr << "\n";
+// Vector to string:
+// {1, 2, 3} -> "1 2 3"
+template <typename T>
+string v2s(vector<T> v) {
+  ostringstream ss;
+  for (auto it = v.begin(); it != v.end(); it++) {
+    ss << *it;
+    if (it != prev(v.end())) {
+      ss << " ";
+    }
+  }
+  return ss.str();
+}
 
 /* Function to check if x is power of 2*/
 bool isPowerOfTwo(int x) {

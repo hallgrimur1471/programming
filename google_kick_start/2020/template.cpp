@@ -4,18 +4,6 @@ using namespace std;
 
 #define watch(x) cout << (#x) << " is " << (x) << endl
 
-#define OPI(v)                                                                 \
-  for (auto e : v) {                                                           \
-    cout << e << " ";                                                          \
-  }                                                                            \
-  cout << "\n";
-
-#define EPI(v)                                                                 \
-  for (auto e : v) {                                                           \
-    cerr << e << " ";                                                          \
-  }                                                                            \
-  cerr << "\n";
-
 typedef long long ll;
 typedef pair<int, int> ipair;
 

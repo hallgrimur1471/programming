@@ -26,8 +26,8 @@ func main() {
 
 func sum(b []int) int {
 	s := 0
-	for i := 0; i < len(b); i++ {
-		s += b[i]
+	for _, v := range b {
+		s += v
 	}
 	return s
 }

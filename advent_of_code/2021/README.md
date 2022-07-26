@@ -3,8 +3,7 @@
 ## Usage
 
 ```
-# Run
-go build d01_2.go && time ./d01_2 < d01.in
+svarmi_watch . .go 'clear; day=02; part=1; go build d${day}_${part}.go && time ./d${day}_${part} < d${day}.in'
 ```
 
 ## Setting up a new solution

@@ -12,6 +12,7 @@ import (
 func main() {
 	depth := 0
 	pos := 0
+	aim := 0
 
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
@@ -25,10 +26,11 @@ func main() {
 		switch op {
 		case "forward":
 			pos += amount
+			depth += aim * amount
 		case "down":
-			depth += amount
+			aim += amount
 		case "up":
-			depth -= amount
+			aim -= amount
 		default:
 			log.Fatal("Unexpected op")
 		}
